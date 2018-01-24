@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
-class UserController extends Controller
+use Request;
+class UserController extends InitialController
 {
-    //
+    public function data(Request $req){
+    	//print_r(Request::all());
+    	return $this::send_success_response("test message","success","askldjaskldjlkasjdklas");
+    }
 }

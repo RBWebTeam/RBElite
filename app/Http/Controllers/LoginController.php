@@ -12,7 +12,7 @@ use Session;
 use URL;
 use Mail;
 use Illuminate\Support\Facades\Hash;
-class LoginController extends Controller
+class LoginController extends InitialController
 {
       public function login(Request $request){
          

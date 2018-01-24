@@ -10,7 +10,7 @@ use Redirect;
 use Session;
 use URL;
 use Mail;
-class FbaController extends Controller
+class FbaController extends InitialController
 {
        
         public function fba_list(){
