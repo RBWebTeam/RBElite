@@ -17,14 +17,14 @@
 	 <link href="{{url('stylesheets/datepicker.css')}}" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="bg">
+<body  >
 	
 	<div class="continer">
 	</br></br></br></br>
 	 <div class="col-md-4"></div>
 		<div class="col-md-4">
 		<div class="login">
-			<div class="logo-bg"><img src="images/logo.png" class="img-responsive img-center"/></div>
+			<div class="logo-bg"><img src=" " class="img-responsive img-center"/></div>
 			<div class="login-bdy">
 			 <h2 class="text-center">SIGN IN</h2>
 			 <br>
