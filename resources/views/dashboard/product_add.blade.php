@@ -13,6 +13,7 @@
 									        <label for="inputEmail" class="control-label col-xs-2">Product Name</label>
 									        <div class="col-xs-10">
 									            <input type="text" class="form-control" name="name" id="name"  >
+									             @if ($errors->has('name'))<label class="control-label" for="inputError"> {{ $errors->first('name') }}</label>  @endif
 									        </div>
 									    </div>
 
@@ -25,7 +26,7 @@
 												  <option value="{{$val->id}}">{{$val->name}}</option>
 												 @endforeach
 												</select>
-									            
+									             @if ($errors->has('category_id'))<label class="control-label" for="inputError"> {{ $errors->first('category_id') }}</label>  @endif
 									        </div>
 									    </div>
 

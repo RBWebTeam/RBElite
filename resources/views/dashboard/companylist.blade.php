@@ -12,7 +12,7 @@
 								 <!-- Date Start -->
 								<div class="col-md-4">
 								<div class="form-group">
-					                <p><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#company_modal" >Company  ADD</a></p>
+					                <p><a href="#"  class="btn btn-default btn-sm"  data-toggle="modal" data-target="#company_modal" > <span class="glyphicon glyphicon-plus"></span> Product Company   </a></p>
 					            </div>
 					           </div>
 							  

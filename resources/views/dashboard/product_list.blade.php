@@ -12,7 +12,8 @@
 								 <!-- Date Start -->
 								<div class="col-md-4">
 								<div class="form-group">
-					                <p><a href="product-add">ADD</a></p>
+					                <p><a href="product-add" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-plus"></span> Product </a>   </p>
+
 					            </div>
 					           </div>
 							  
@@ -25,17 +26,28 @@
 					                  <tr>
 					                   <th>ID</th>
 					                   <th>Name</th>
+					                   <th>RTO</th>
+					                    <th>Sub Category</th>
+					                    <th>Charges</th>
+					                    <th>Agent Commision</th>
+					                     <th>Documents Required</th>
+					                   
 
 					                 </tr>
 					                </thead>
 					                <tbody>
-					               @foreach($product_master as $key=> $val)
-					                 <tr>
-					                  <td>{{$key}}</td>
-					                  <td>{{$val->name}}</td>
-					                 
-					                  </tr>
-					                @endforeach
+						               @foreach($product_master as $key=> $val)
+						                 <tr>
+						                  <td>{{$key}}</td>
+						                  <td>{{$val->productname}}</td>
+						                   <td>{{$val->rtoname}}</td>
+						                    <td>{{$val->subcategory}}</td>
+						                  <td>{{$val->charges}}</td>
+						                  <td>{{$val->agent_commision}}</td>
+						                   <td>{{$val->required_field}}</td>	
+						                 
+						                  </tr>
+						                @endforeach
 					               
 					             </tbody>
 					            </table>
