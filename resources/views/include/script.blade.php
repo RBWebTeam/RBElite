@@ -106,7 +106,7 @@ $(document).ready(function(){                        //     Product LIst
                            $('#Sub_Category_ID').empty();
                           obj=Array();
                          $.each(msg, function(i, item) {
-                                obj.push('<option value='+item.id+'>'+item.name+'</option>');
+                                obj.push('<option value='+item.id+'>'+item.subcategory+'</option>');
                            });
                             $("#Sub_Category_ID_hide").css("display", "block");
                            $('#Sub_Category_ID').append('<select class="form-control" name="Sub_Category_ID"> '+obj+'</select>');
@@ -142,14 +142,14 @@ $("#category_add_id").click(function(event){  event.preventDefault();
 });
 
 
- function sub_cat_fn(val){
+ function sub_cat_fn(val){  
  $('#p_id').val(val);
  $('#sub_cat_id').empty();
 $.get("{{url('sub-category-id')}}", {"sub_category_id":val})
                    .done(function(msg){ 
                            sub_cat=Array();
                             $.each(msg, function(i, item) {
-                             sub_cat.push('<tr><td>'+item.name+'</td></tr>');
+                             sub_cat.push('<tr><td>'+item.subcategory+'</td></tr>');
                             });
                            $('#sub_cat_id').append(sub_cat);
                            $('#subcategory').modal('show');
