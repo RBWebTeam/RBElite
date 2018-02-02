@@ -52,7 +52,7 @@ class ProductController extends Controller
 
 
  
- public function product_save(Request $req){
+ public function product_save(Request $req){       
     $validator = Validator::make($req->all(), [
     'name' => 'required',
     'category_id' => 'required',
@@ -73,7 +73,7 @@ class ProductController extends Controller
      'sub_catg_id'     =>$req->Sub_Category_ID, 
      'charges'         =>$req->charge, 
      'agent_commision' =>$req->agent_commision,
-     'required_field'  =>$req->required_field,
+     'required_field'  =>implode(',', $req->required_field),
      'flag'            =>0,
      'created_at'      =>date('Y-m-d H:i:s'),
      'is_active'       =>0,

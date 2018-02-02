@@ -26,7 +26,7 @@
 												  <option value="{{$val->id}}">{{$val->name}}</option>
 												 @endforeach
 												</select>
-									             @if ($errors->has('category_id'))<label class="control-label" for="inputError"> {{ $errors->first('category_id') }}</label>  @endif
+									    @if ($errors->has('category_id'))<label class="control-label" for="inputError"> {{ $errors->first('category_id') }}</label>  @endif
 									        </div>
 									    </div>
 
@@ -45,6 +45,7 @@
 									        <label for="inputEmail" class="control-label col-xs-2">Charge</label>
 									        <div class="col-xs-10">
 									            <input type="text" class="form-control" name="charge" id="charge" onkeypress="return Numeric(event)" >
+									       @if ($errors->has('charge'))<label class="control-label" for="inputError"> {{ $errors->first('charge') }}</label>  @endif
 									        </div>
 									    </div>
 
@@ -53,6 +54,7 @@
 									        <label for="inputEmail" class="control-label col-xs-2">Agent Commision</label>
 									        <div class="col-xs-10">
 									            <input type="text" class="form-control"  name="agent_commision"  onkeypress="return Numeric(event)">
+									    @if ($errors->has('agent_commision'))<label class="control-label" for="inputError"> {{ $errors->first('agent_commision') }}</label>  @endif
 									        </div>
 									    </div>
  
@@ -60,7 +62,7 @@
                                          <div class="form-group">
 									        <label for="inputPassword" class="control-label col-xs-2">Documents Required</label>
 									        <div class="col-xs-10">
-									           <select class="form-control" name="required_field" id="required_field">
+									           <select class="form-control" name="required_field[]" id="required_field" multiple="">
 									            <option  > --SELECT---</option>
 									            @foreach($docu_required as $key=> $val)
 												  <option value="{{$val->id}}">{{$val->required_field}}</option>

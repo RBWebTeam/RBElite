@@ -18,5 +18,6 @@
 </body>
  @include('include.footer')
  @include('include.script')
+ @include('include.ajscript')
 </html>
  
