@@ -64,4 +64,5 @@ Route::get('mastercard','AgentController@mastercard');
 
 
 });
-Route::get('get-token','AccesstokenController@give_token');
+Route::get('access_token.php','TransactionController@give_token');
+
