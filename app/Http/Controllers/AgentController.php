@@ -17,8 +17,9 @@ class AgentController extends Controller
 
         public function agent_list(){
              
-              $agent_m=DB::select('call sp_rto_master()');
-             return view('dashboard.agent_list',['agent_m'=>$agent_m]);
+              $rto=DB::select('call sp_rto_master()');
+              $agent_m=DB::select('call sp_agent_master()');
+             return view('dashboard.agent_list',['rto'=>$rto,'agent_m'=>$agent_m]);
             
         }
 

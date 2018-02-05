@@ -30,9 +30,9 @@ Route::post('login','UserController@login');
 Route::get('loadproduct','ProductTypeController@loadproduct');
 Route::post('insertorder','ProductTypeController@insertorder');
 Route::post('get-tasklist','ProductTypeController@getorderdetails');
-<<<<<<< HEAD
+
 Route::post('forgot-password','otpController@forgot_password');
 Route::post('change-password','otpController@change_password');
-=======
+
 Route::post('get-orders','TransactionController@show_orders');
->>>>>>> 05413973321f14c693004bafab07e07bbb48fb8e
+ 

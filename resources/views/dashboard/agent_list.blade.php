@@ -32,10 +32,14 @@
 					                 </tr>
 					                </thead>
 					                <tbody>
-					                <tr>
+					               
+					                   @foreach($agent_m as $val)
+					                    <tr>
 					                    <td>Category  Name</td>
                                         <td>Subcategory  </td>
-                                     </tr>
+                                              </tr>
+                                         @endforeach
+                               
 					               
 					             </tbody>
 					            </table>
@@ -119,7 +123,7 @@
 		        <div class="col-xs-10">
 		        <select class="form-control" name="rto_id" id="rto_id">
 		           <option value="0" > SELECT --</option>
-		           @foreach($agent_m as $val)
+		           @foreach($rto as $val)
 									 <option value="{{$val->id}}">{{$val->series_no}}</option>           
 					 @endforeach
 
