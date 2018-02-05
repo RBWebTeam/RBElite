@@ -48,4 +48,26 @@ class AgentController extends Controller
 
         	}
         }
+
+
+        public  function mastercard(){
+
+                          
+                      //   $query=DB::table("card_master")->select('card_id','short_name','card_master')->first();
+
+
+ 
+for($i=0;$i<20;$i++){
+         $number=str_pad($i,10,"0",STR_PAD_LEFT);
+   
+  echo "RB".$number."<br>";
+}
+
+
+                                
+
+ 
+ 
+
+        }
 }

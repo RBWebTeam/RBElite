@@ -9,7 +9,7 @@
     <li class="nav-item"><a href="{{url('documents')}}"><span class="sp-nav"><img src="images/icon/home.png"></span>&nbsp;&nbsp;Document Required</a> </li>
 
      <li class="nav-item"><a href="{{url('agent-list')}}"><span class="sp-nav"><img src="images/icon/home.png"></span>&nbsp;&nbsp;Agent Master</a> </li>
-
+ <li class="nav-item"><a href="{{url('mastercard')}}"><span class="sp-nav"><img src="images/icon/home.png"></span>&nbsp;&nbsp;mastercard</a> </li>
     </ul>
    </nav>
 </div>
