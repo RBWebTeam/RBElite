@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 
 class AccesstokenController extends Controller
 {
@@ -36,7 +37,7 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         {
             echo 'error:' . curl_error($curl);
         }
-        print_r($json);exit();
+        //print_r($json);exit();
         if (isset($json->error)) {
             return "Error: " . $json->error;
             throw new \Exception("Error: " . $json->error);
@@ -48,6 +49,9 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         public function give_token(Request $req){
        
 
-        echo $this::getToken();
+        $token= $this::getToken();
+        $num_str = sprintf("%06d", mt_rand(1, 999999));
+         $res = array('access_token' =>$token ,'transaction_id'=>$num_str );
+		return Response::json($res);
     }
 }
