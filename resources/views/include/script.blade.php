@@ -356,4 +356,52 @@ $("#company_master_id").click(function(event){  event.preventDefault();
   });
 </script>
 
+<!-- Company Related -->
+
+<script type="text/javascript">
+  $('.edit').click(function(){
+  
+    var $row = $(this).closest("tr");
+    var id = $row.find(".com_id").text();    // Find the row
+    var name = $row.find(".name").text(); // Find the text
+    var contact_person = $row.find(".contact_person").text()
+    var number = $row.find(".number").text()
+    var email = $row.find(".email").text()
+    var company_id = $row.find(".company_id").text()
+    var logo = $("img", $row).attr("src");
+    // console.log(logo);return false;
+   
+
+    $('.c_id').val(id);
+    $('.company_nm').val(name);
+    $('.contact_person').val(contact_person);
+    $('.contact_no').val(number);
+    $('.email_id').val(email);
+    $('.company_id').val(company_id);
+    $(".logo").attr( "src","{{url('images/upload')}}/{{$val->logo}}");
+
+    
+  });
+</script>
+
+<script type="text/javascript">
+  $('#company_edit').click(function(){
+    alert('okae');
+    $.ajax({
+          url:"{{URL::to('company_edit_submit')}}" ,  
+          data:new FormData($("#company_edit_form")[0]),
+          dataType:'json',
+          async:false,
+          type:'POST',
+          processData: false,
+          contentType: false,
+          success: function(msg){
+             console.log(msg.status);
+             
+              
+            
+            }
+        });
+  });
+</script>
  
