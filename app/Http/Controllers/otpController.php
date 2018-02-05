@@ -13,6 +13,7 @@ use Mail;
 class otpController extends CallApiController
 {
 
+ public static $service_url_static = "http://services.rupeeboss.com/";
   public function otpinsert(Request $req)
   {
     //try{
@@ -22,20 +23,21 @@ class otpController extends CallApiController
       $status=0;
       $msg="success";
       try {
-        // $otp=123456;
-      $otp = mt_rand(100000, 999999);
+        $otp=123456;
+      // $otp = mt_rand(100000, 999999);
       
             Session::put('temp_contact', $req['mobNo']);
             // print_r(Session::get('temp_contact'));exit();
             $post_data='{"mobNo":"'.$req->mobNo.'","msgData":"your otp is '.$otp.' - RupeeBoss.com - Elite",
                         "source":"WEB"}';
                         // print_r( $post_data);exit();
-            $url = "http://beta.services.rupeeboss.com/LoginDtls.svc/xmlservice/sendSMS";
-            //$url = $this::$service_url_static."LoginDtls.svc/xmlservice/sendSMS";
+            // $url = "http://beta.services.rupeeboss.com/LoginDtls.svc/xmlservice/sendSMS";
+            $url = $this::$service_url_static."LoginDtls.svc/xmlservice/sendSMS";
             $result=$this->call_json_data_api($url,$post_data);
             $http_result=$result['http_result'];
             $error=$result['error'];
             $obj = json_decode($http_result);
+            // print_r($obj);exit();
 
             //echo $obj->status;//$http_result["status"];
             // print_r($post_data);exit();
