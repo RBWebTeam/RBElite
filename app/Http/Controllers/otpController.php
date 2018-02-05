@@ -92,6 +92,63 @@ class otpController extends CallApiController
     }
   }
 
+  public function forgot_password(Request $req){
+        
+        print_r($req->all());
+        $status=0;
+        $msg="success";
+        try {
+            $password = mt_rand(100000, 999999);
+        Session::put('temp_contact', $req['mobile']);
+        $post_data='{"mobNo":"'.$req['mobile'].'","msgData":"your password is '.$password.' - RupeeBoss.com",
+                        "source":"WEB"}';
+                        // print_r($post_data);exit();
+            // $url = "http://beta.services.rupeeboss.com/LoginDtls.svc/xmlservice/sendSMS";
+            $url = $this::$service_url_static."LoginDtls.svc/xmlservice/sendSMS";
+            $result=$this->call_json_data_api($url,$post_data);
+            $http_result=$result['http_result'];
+            $error=$result['error'];
+            $obj = json_decode($http_result);
+            $query=DB::table('user_master') ->where('mobile', $req['mobile'])
+            ->update(['password' => $password]);
+            if ($query) {
+              return response()->json(array('status' =>0,'message'=>"success"));
+            }
+        } catch (Exception $e) {
+            return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
+        }
+        
+    }
+
+    public function change_password(Request $req){
+      $status=0;
+      $msg="success";
+      try {
+        $mobile = $req['mobile'];
+     $current_password = $req['current_password'];
+     $new_password = $req['new_password'];
+     $confirm_password = $req['confirm_password'];
+
+     if ($new_password == $confirm_password ) {
+        $query=DB::table('user_master') ->where('mobile', $req['mobile'])
+            ->update(['password' => $confirm_password]);
+            if ($query) {
+              return response()->json(array('status' =>0,'message'=>"success"));
+            }
+     }elseif ($new_password != $confirm_password) {
+       return response()->json(array('message'=>"Both password should be same"));
+     }
+      } catch (Exception $e) {
+        return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
+      }
+     
+      
+     
+     
+   
+
+    }
+
 
 
 }
