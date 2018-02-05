@@ -44,6 +44,16 @@ Route::get('sub-category-id','ProductController@sub_category_id');
 Route::POST('sub-category-save','ProductController@sub_category_save');
 Route::get('company-master','CompanyMasterController@companymaste');
 Route::POST('company-master-save','CompanyMasterController@companymaste_save');
+
+Route::get('documents','CompanyMasterController@documents_required');
+Route::post('documents-submit','CompanyMasterController@documents_submit');
+Route::post('documents-edit-submit','CompanyMasterController@documents_edit_submit');
+
+
+
+
+
+
 Route::get('agent-list','AgentController@agent_list');
 Route::POST('agent-save','AgentController@agent_save');
 

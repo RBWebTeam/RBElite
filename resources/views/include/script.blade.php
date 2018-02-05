@@ -280,4 +280,80 @@ $("#company_master_id").click(function(event){  event.preventDefault();
 
 </script>
 
+<!-- Documents Related -->
+
+<script type="text/javascript">
+  $('#documents').click(function(){
+  
+   if (! $('#documents_form').valid()) 
+    {
+      alert('not valid');
+    } 
+    else {
+          
+         $.ajax({  
+         type: "POST",  
+         url: "{{URL::to('documents-submit')}}",
+         data : $('#documents_form').serialize(),
+         success: function(msg){
+            console.log(msg.message);
+            if (msg.status== 0) 
+            { 
+              alert('Documents Added Successfully');
+            }
+            else
+            {
+               alert('We regret documents could not be Added');
+            }
+                     
+                      
+      }   
+     });
+        
+    }
+  });
+</script>
+
+<script type="text/javascript">
+  $('.do_edit').click(function(){
+
+    var $row = $(this).closest("tr");    // Find the row
+    var doc_id = $row.find(".doc_id").text(); // Find the text
+    var doc_field = $row.find(".doc_field").text()
+    
+    $('.docs_nm').empty().append(doc_field);
+    $('.docs_id').val(doc_id);
+  });
+</script>
+
+<script type="text/javascript">
+  $('#documents_edit').click(function(){
+   // alert('okae');
+  
+          
+         $.ajax({  
+         type: "POST",  
+         url: "{{URL::to('documents-edit-submit')}}",
+         data : $('#documents_edit_form').serialize(),
+         success: function(msg){
+          console.log(msg.message);
+            if (msg.status== 0) 
+            { 
+              alert('Documents have been updated successfully');
+            }
+            else
+            {
+               alert('We regret documents could not be updated');
+            }
+
+            
+                     
+                      
+      }   
+     });
+        
+    
+  });
+</script>
+
  
