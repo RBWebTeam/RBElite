@@ -77,13 +77,15 @@
 		        <label for="inputEmail" class="control-label col-xs-2"> Address  </label>
 		        <div class="col-xs-10">
 		            <input type="text" class="form-control" name="ag_address" id="ag_address"  >
+		             <span id="valid_ag_address" class="help-inline"></span>
 		        </div>
 		    </div>
 
 		    <div class="form-group">
 		        <label for="inputEmail" class="control-label col-xs-2"> Contact No  </label>
 		        <div class="col-xs-10">
-		            <input type="text" class="form-control" name="ag_contactNo" id="ag_contactNo"  >
+		            <input type="text" class="form-control" name="ag_contact_no" id="ag_contact_no" onkeypress="return Numeric(event)"  >
+		             <span id="valid_ag_contact_no" class="help-inline"></span>
 		        </div>
 		    </div>
 
@@ -91,20 +93,38 @@
 		        <label for="inputEmail" class="control-label col-xs-2">Email ID </label>
 		        <div class="col-xs-10">
 		            <input type="text" class="form-control" name="ag_email" id="ag_email"  >
+		             <span id="valid_ag_email" class="help-inline"></span>
+		        </div>
+		    </div> 
+
+		     <div class="form-group">
+		        <label for="inputEmail" class="control-label col-xs-2">Password </label>
+		        <div class="col-xs-10">
+		            <input type="password" class="form-control" name="password" id="password"  >
+		             <span id="valid_agent_password" class="help-inline"></span>
 		        </div>
 		    </div>
+
+		     <div class="form-group">
+		        <label for="inputEmail" class="control-label col-xs-2">confirm password</label>
+		        <div class="col-xs-10">
+		            <input type="password" class="form-control" name="confirm_password" id="confirm_password"  >
+		             <span id="valid_agent_cagent_password" class="help-inline"></span>
+		        </div>
+		    </div>
+
 
 		    <div class="form-group">
 		        <label for="inputEmail" class="control-label col-xs-2">RTO </label>
 		        <div class="col-xs-10">
 		        <select class="form-control" name="rto_id" id="rto_id">
-		           <option  > SELECT --</option>
+		           <option value="0" > SELECT --</option>
 		           @foreach($agent_m as $val)
 									 <option value="{{$val->id}}">{{$val->series_no}}</option>           
 					 @endforeach
 
 				</select>
-		            
+		              <span id="valid_ag_rto_id" class="help-inline"></span>
 		        </div>
 		    </div>
 
