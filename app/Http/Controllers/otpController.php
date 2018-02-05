@@ -94,7 +94,7 @@ class otpController extends CallApiController
 
   public function forgot_password(Request $req){
         
-        print_r($req->all());
+        // print_r($req->all());exit();
         $status=0;
         $msg="success";
         try {
