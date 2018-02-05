@@ -98,6 +98,8 @@ class otpController extends CallApiController
         $status=0;
         $msg="success";
         try {
+            $mobile = $req['mobile'];
+            $type = $req['type'];
             $password = mt_rand(100000, 999999);
         Session::put('temp_contact', $req['mobile']);
         $post_data='{"mobNo":"'.$req['mobile'].'","msgData":"your password is '.$password.' - RupeeBoss.com",
@@ -115,7 +117,7 @@ class otpController extends CallApiController
               return response()->json(array('status' =>0,'message'=>"success"));
             }
         } catch (Exception $e) {
-            return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
+            return response()->json(array('status' =>1,'message'=>$e->getMessage()));
         }
         
     }
@@ -139,7 +141,7 @@ class otpController extends CallApiController
        return response()->json(array('message'=>"Both password should be same"));
      }
       } catch (Exception $e) {
-        return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
+        return response()->json(array('status' =>1,'message'=>$e->getMessage()));
       }
      
       
