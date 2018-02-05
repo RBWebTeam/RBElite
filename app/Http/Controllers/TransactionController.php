@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Response;
-
-class TransactionController extends Controller
+use DB;
+class TransactionController extends InitialController
 {
     //
        public $client_id='3bltoyw0MheRMwXY7CoubY4ZKaLdbYIwo3CV0Eyn';
@@ -52,5 +52,15 @@ class TransactionController extends Controller
         $token= $this::getToken();
         
 		return ($token);
+    }
+    public function show_orders(Request $req){
+        $data=DB::select('select * from view_sales_order');
+
+        if(sizeof($data)>0){
+            return $this::send_success_response('Data loaded' ,"Success",$data);
+        }else{
+            return $this::send_failure_response("No order to show","failure",""); 
+        }
+       // return Response::json($data);
     }
 }
