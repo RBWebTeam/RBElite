@@ -94,20 +94,7 @@
 		        </div>
 		    </div>
 
-		    <div class="form-group">
-		        <label for="inputEmail" class="control-label col-xs-2">RTO </label>
-		        <div class="col-xs-10">
-		        <select class="form-control" name="rto_id" id="rto_id">
-		           <option  > SELECT --</option>
-		           @foreach($agent_m as $val)
-									 <option value="{{$val->id}}">{{$val->series_no}}</option>           
-					 @endforeach
-
-				</select>
-		            
-		        </div>
-		    </div>
-
+		     
 
 		    
       </form>

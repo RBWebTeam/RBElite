@@ -29,6 +29,9 @@ Route::get('register-user','LoginController@register_user');
 Route::get('log-out','LoginController@logout');
 
 
+
+Route::group(['middleware' => ['DashboardCheck','web']], function () {
+
 Route::get('dashboard','DashboardController@dashboard');
 Route::get('product-list','ProductController@product_list');
 Route::get('product-add','ProductController@product_add');
@@ -55,3 +58,8 @@ Route::post('documents-edit-submit','CompanyMasterController@documents_edit_subm
 
 Route::get('agent-list','AgentController@agent_list');
 Route::POST('agent-save','AgentController@agent_save');
+Route::get('mastercard','AgentController@mastercard');
+
+
+
+});
