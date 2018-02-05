@@ -29,6 +29,7 @@ class otpController extends CallApiController
             // print_r(Session::get('temp_contact'));exit();
             $post_data='{"mobNo":"'.$req->mobile.'","msgData":"your otp is '.$otp.' - RupeeBoss.com - Elite",
                         "source":"WEB"}';
+                        // print_r( $post_data);exit();
             $url = "http://beta.services.rupeeboss.com/LoginDtls.svc/xmlservice/sendSMS";
             //$url = $this::$service_url_static."LoginDtls.svc/xmlservice/sendSMS";
             $result=$this->call_json_data_api($url,$post_data);

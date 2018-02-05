@@ -82,7 +82,7 @@ class ProductController extends Controller
  ],   
 ]);
 
- return redirect('/product-add');
+ return redirect('/product-list');
 }
 
 }
