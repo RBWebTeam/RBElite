@@ -30,3 +30,4 @@ Route::post('login','UserController@login');
 Route::get('loadproduct','ProductTypeController@loadproduct');
 Route::post('insertorder','ProductTypeController@insertorder');
 Route::post('get-tasklist','ProductTypeController@getorderdetails');
+Route::post('get-orders','TransactionController@show_orders');
