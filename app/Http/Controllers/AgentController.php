@@ -53,18 +53,18 @@ class AgentController extends Controller
         public  function mastercard(){
 
                           
-                      //   $query=DB::table("card_master")->select('card_id','short_name','card_master')->first();
+                         $card=DB::table("card_master")->get();
 
 
  
-for($i=0;$i<20;$i++){
-         $number=str_pad($i,10,"0",STR_PAD_LEFT);
+// for($i=0;$i<20;$i++){
+//          $number=str_pad($i,10,"0",STR_PAD_LEFT);
    
-  echo "RB".$number."<br>";
-}
+//   echo "RB".$number."<br>";
+// }
 
 
-                                
+                                  return view('dashboard.elite_card',['card'=>$card]);
 
  
  
