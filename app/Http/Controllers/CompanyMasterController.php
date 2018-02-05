@@ -9,7 +9,8 @@ use Validator;
 use Redirect;
 use Session;
 use URL;
-use Mai;
+use Mail;
+use File;
 
 class CompanyMasterController extends Controller
 {
@@ -94,5 +95,10 @@ class CompanyMasterController extends Controller
          if ( $query) {
               return response()->json(array('status' =>0,'message'=>"success"));
             }
+    }
+
+    public function company_edit_submit(Request $req){
+     print_r($req->all());
+
     }
 }

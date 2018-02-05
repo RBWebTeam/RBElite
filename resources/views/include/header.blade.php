@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="col-md-2 col-xs-4 no-mob-pad"><img src=" " class="img-responsive logo pull-left"/></div>
+<!-- <div class="col-md-2 col-xs-4 no-mob-pad"><img src=" " class="img-responsive logo pull-left"/></div> -->
 
 <div class="col-md-3">
 <div class="search-dv pull-left">
