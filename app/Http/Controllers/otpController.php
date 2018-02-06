@@ -111,18 +111,25 @@ class otpController extends CallApiController
             $http_result=$result['http_result'];
             $error=$result['error'];
             $obj = json_decode($http_result);
-            if ($type==1) {
-              $query=DB::table('user_master') ->where('mobile', $req['mobile'])
+             $q=DB::table('user_master')->select('mobile')->where('mobile','=',$req['mobile'])->first();
+             $que=DB::table('agent_master')->select('ag_contact_no')->where('ag_contact_no','=',$req['mobile'])->first();
+             
+             
+            if ($type==1 && isset($q->mobile)) {
+             $query=DB::table('user_master')->where('mobile', $req['mobile'])
             ->update(['password' => $password]);
-            if ($query) {
+            
               return response()->json(array('status' =>0,'message'=>"success"));
-            }
-            } elseif ($type==2) {
+            
+            } elseif ($type==2 && $que->ag_contact_no) {
               $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
             ->update(['agent_password' => $password]);
-            if ($query) {
+            
               return response()->json(array('status' =>0,'message'=>"success"));
-            }
+            
+            }else{
+
+               return response()->json(array('status' =>1,'message'=>"Number doesnt match."));
             } 
             
             
