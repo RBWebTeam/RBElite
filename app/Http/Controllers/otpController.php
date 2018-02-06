@@ -36,28 +36,7 @@ class otpController extends CallApiController
             $error=$result['error'];
             $obj = json_decode($http_result);
 
-            //echo $obj->status;//$http_result["status"];
-            // print_r($post_data);exit();
-            // statusId response 0 for success, 1 for failure
 
-            /*$query=DB::table('vehicle_inspection_otp')
-            ->insertGetId(['mobile_no'=>$req->mobile,
-              'otp'=>$otp,
-              'created_at'=>date("Y-m-d H:i:s"),
-              'updated_at'=>date("Y-m-d H:i:s")]);
-            
-            if ($query) {
-              return response()->json(array('status' =>0,'message'=>"success"));
-            }*/
-      /*} catch (Exception $ee) {
-        return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
-      }*/
-      
-    
-    //echo $http_result[0]->status." ";
-   echo $obj->status;
-
-////////////////////////////////
       
       if($obj->status == "success"){
       $query = DB::select('call usp_insert_otp(?,?,?,?)',array($otp,$req->email,$req->mobile,$req->ip));

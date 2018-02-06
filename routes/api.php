@@ -30,3 +30,9 @@ Route::post('login','UserController@login');
 Route::get('loadproduct','ProductTypeController@loadproduct');
 Route::post('insertorder','ProductTypeController@insertorder');
 Route::post('get-tasklist','ProductTypeController@getorderdetails');
+Route::post('update-order','ProductTypeController@updateorderstatus');
+Route::post('add-by-pincode','ProductTypeController@loadpincode');
+Route::post('load-states','ProductTypeController@loadstates');
+Route::post('load-cities','ProductTypeController@loadcities');
+
+
