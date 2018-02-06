@@ -12,6 +12,7 @@ use Mail;
 
 class UserController extends InitialController
 {
+     public static $service_url_static = "http://services.rupeeboss.com/";
     public function data(Request $req){
     	//print_r(Request::all());
     	return $this::send_success_response("test message","success","askldjaskldjlkasjdklas");
@@ -77,5 +78,7 @@ class UserController extends InitialController
         }
         
     }
+
+    
 
 }

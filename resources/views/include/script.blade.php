@@ -378,7 +378,7 @@ $("#company_master_id").click(function(event){  event.preventDefault();
     $('.contact_no').val(number);
     $('.email_id').val(email);
     $('.company_id').val(company_id);
-    $(".logo").attr( "src","{{url('images/upload')}}/{{$val->logo}}");
+    // $(".logo").attr( "src","{{url('images/upload')}}");
 
     
   });

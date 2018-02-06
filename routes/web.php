@@ -58,11 +58,10 @@ Route::post('documents-edit-submit','CompanyMasterController@documents_edit_subm
 
 Route::get('agent-list','AgentController@agent_list');
 Route::POST('agent-save','AgentController@agent_save');
-Route::get('mastercard','AgentController@mastercard');
-
+Route::get('elite-card-master','AgentController@mastercard');
+Route::POST('elite-save','AgentController@elite_save');
 
 
 
 });
-Route::get('access_token.php','TransactionController@give_token');
-
+Route::get('get-token','AccesstokenController@give_token');
