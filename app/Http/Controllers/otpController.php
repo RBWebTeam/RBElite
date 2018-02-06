@@ -94,10 +94,12 @@ class otpController extends CallApiController
 
   public function forgot_password(Request $req){
         
-        print_r($req->all());
+        // print_r($req->all());exit();
         $status=0;
         $msg="success";
         try {
+            $mobile = $req['mobile'];
+            $type = $req['type'];
             $password = mt_rand(100000, 999999);
         Session::put('temp_contact', $req['mobile']);
         $post_data='{"mobNo":"'.$req['mobile'].'","msgData":"your password is '.$password.' - RupeeBoss.com",
@@ -109,13 +111,23 @@ class otpController extends CallApiController
             $http_result=$result['http_result'];
             $error=$result['error'];
             $obj = json_decode($http_result);
-            $query=DB::table('user_master') ->where('mobile', $req['mobile'])
+            if ($type==1) {
+              $query=DB::table('user_master') ->where('mobile', $req['mobile'])
             ->update(['password' => $password]);
             if ($query) {
               return response()->json(array('status' =>0,'message'=>"success"));
             }
+            } elseif ($type==2) {
+              $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
+            ->update(['agent_password' => $password]);
+            if ($query) {
+              return response()->json(array('status' =>0,'message'=>"success"));
+            }
+            } 
+            
+            
         } catch (Exception $e) {
-            return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
+            return response()->json(array('status' =>1,'message'=>$e->getMessage()));
         }
         
     }
@@ -124,30 +136,35 @@ class otpController extends CallApiController
       $status=0;
       $msg="success";
       try {
-        $mobile = $req['mobile'];
+     $mobile = $req['mobile'];
+     $type = $req['type'];
      $current_password = $req['current_password'];
      $new_password = $req['new_password'];
      $confirm_password = $req['confirm_password'];
 
+
      if ($new_password == $confirm_password ) {
-        $query=DB::table('user_master') ->where('mobile', $req['mobile'])
+      if ($type==1) {
+       $query=DB::table('user_master') ->where('mobile', $req['mobile'])
             ->update(['password' => $confirm_password]);
             if ($query) {
               return response()->json(array('status' =>0,'message'=>"success"));
             }
+      }elseif ($type==2) {
+        $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
+            ->update(['agent_password' => $confirm_password]);
+            if ($query) {
+              return response()->json(array('status' =>0,'message'=>"success"));
+            }
+      }
+        
      }elseif ($new_password != $confirm_password) {
        return response()->json(array('message'=>"Both password should be same"));
      }
       } catch (Exception $e) {
-        return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
+        return response()->json(array('status' =>1,'message'=>$e->getMessage()));
       }
-     
-      
-     
-     
-   
-
-    }
+  }
 
 
 
