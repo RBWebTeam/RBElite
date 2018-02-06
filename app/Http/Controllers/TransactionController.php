@@ -82,10 +82,7 @@ class TransactionController extends InitialController
                     
                     $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump]);
                     return $this::send_success_response('Data Updated' ,"Success",$data);
-                
-                }
-              
-                    
+
                 } catch (\Exception $e) {
                     return $this::send_failure_response($e->getMessage(),"failure",[]);
                     //return $e->getMessage();//$this::send_failure_response($e->getMessage(),"failure",""); 
