@@ -15,17 +15,19 @@ class ProductController extends Controller
     
   public function product_list(){
 
-           $product_master=DB::table('product_master')->select('id','name')->get();
+
+                   $product_master= DB::select('call sp_product_master()');
+          // $product_master=DB::table('product_master')->get();
            return view('dashboard.product_list',['product_master'=>$product_master]);
          
 
   }
 
 
-  public function product_add(){
+  public function product_add(){   
 
 
-           $query=DB::table('product_type_master')->where('parent_id','=',0)->get();
+           $query=DB::table('product_type_master')->select('id','name')->get();
            $docu_required=DB::table('documents_required')->get();
 
 
@@ -41,7 +43,7 @@ class ProductController extends Controller
               
 
 
-             $query=DB::table('product_type_master')->where('parent_id','=',$req->category_id)->get();
+             $query=DB::table('product_subcategory')->where('product_type_id','=',$req->category_id)->get();
           
               return $query;
 
@@ -50,7 +52,7 @@ class ProductController extends Controller
 
 
  
- public function product_save(Request $req){
+ public function product_save(Request $req){       
     $validator = Validator::make($req->all(), [
     'name' => 'required',
     'category_id' => 'required',
@@ -69,9 +71,9 @@ class ProductController extends Controller
     ['name'            =>$req->name, 
      'catg_id'         =>$req->category_id, 
      'sub_catg_id'     =>$req->Sub_Category_ID, 
-     'chrages'         =>$req->charge, 
+     'charges'         =>$req->charge, 
      'agent_commision' =>$req->agent_commision,
-     'required_field'  =>$req->required_field,
+     'required_field'  =>implode(',', $req->required_field),
      'flag'            =>0,
      'created_at'      =>date('Y-m-d H:i:s'),
      'is_active'       =>0,
@@ -80,7 +82,7 @@ class ProductController extends Controller
  ],   
 ]);
 
- return redirect('/product-add');
+ return redirect('/product-list');
 }
 
 }
@@ -90,21 +92,23 @@ class ProductController extends Controller
 public function category_list(){
 
 
-        $query=DB::table('product_type_master')->where('parent_id','=',0)->get();
+        $query=DB::table('product_type_master')->select('id','name','created_at','ip')->get();
 
            return view('dashboard.category_list',['query'=>$query]);
 
 }
 
 
-public function categorysave(Request $req){
+public function categorysave(Request $req){     
 
   $status=1;
   try {
 
  DB::table('product_type_master')->insert([
-    ['name' =>$req->name, 
-     'parent_id' =>0,  
+    [
+     'name' =>$req->name, 
+     'ip'   =>$req->ip(),
+     'created_at' =>date('Y-m-d H:i:s'), 
     ],   
 ]);
         return $status=0;
@@ -120,23 +124,26 @@ public function categorysave(Request $req){
 
 
 
-public function sub_category_id(Request $req){
+public function sub_category_id(Request $req){      
 
 	    
-	      $query=DB::table('product_type_master')->where('parent_id','=',$req->sub_category_id)->get();
+	      $query=DB::table('product_subcategory')->where('product_type_id','=',$req->sub_category_id)->get();
 	      return  $query;
  
 }
 
 
-public function sub_category_save(Request $req){
+public function sub_category_save(Request $req){   
 
  $status=1;
   try {
 
- DB::table('product_type_master')->insert([
-    ['name' =>$req->name, 
-     'parent_id' =>$req->p_id,  
+ DB::table('product_subcategory')->insert([
+    [
+     'product_type_id' =>$req->p_id,
+     'subcategory' =>$req->name, 
+     'created_at' =>date('Y-m-d H:i:s'), 
+     'flage'=>0
     ],   
 ]);
         return $status=0;

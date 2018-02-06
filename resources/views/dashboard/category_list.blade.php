@@ -6,13 +6,14 @@
 					            <div id="content" style="overflow:scroll;">
 								 <div class="container-fluid white-bg">
 								 <div class="col-md-12"><h3 class="mrg-btm">Category and Subcategory</h3></div>
+
 								 
 								  
 								 
 								 <!-- Date Start -->
 								<div class="col-md-4">
 								<div class="form-group">
-					                <p><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Category  ADD</a></p>
+					                <p> <a href="#" class="btn btn-default btn-sm"    data-toggle="modal" data-target="#exampleModal"> <span class="glyphicon glyphicon-plus"></span> Category  </a> </p>
 					            </div>
 					           </div>
 							  
@@ -35,9 +36,9 @@
 					                 <tr>
 					                 
 					                  <td>  {{$val->name}}  </td>
-					                   <td> <a href="#" onclick="sub_cat_fn({{$val->id}});"> <i class="fa fa-eye" aria-hidden="true">Subcategory</i>  </a> </td>
+					                   <td>  <span class="glyphicon glyphicon-hand-right"></span> <a href="#" onclick="sub_cat_fn({{$val->id}});"> <i class="fa fa-eye" aria-hidden="true">Subcategory</i>  </a> </td>
 					                 
-					                  </tr>
+					                  </tr> 
 					                @endforeach
 					               
 					             </tbody>

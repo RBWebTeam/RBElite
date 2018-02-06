@@ -40,6 +40,8 @@ class ProductTypeController extends InitialController
 			$category = DB::select('call usp_loadCategory()');
 			$count = count($category);
 
+			print_r($category)
+
 			$subcategory = DB::select('call usp_loadsubcategory()');
 			$countsub = count($subcategory);
 
@@ -62,6 +64,7 @@ class ProductTypeController extends InitialController
 
 	public function insertorder(Request $req)
 	{	
+		// print_r($req->all());exit();
 				try{
 
         	$query = DB::select('call usp_order_details_insert(?,?)',array($req->prodid,$req->userid));

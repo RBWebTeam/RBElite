@@ -29,6 +29,9 @@ Route::get('register-user','LoginController@register_user');
 Route::get('log-out','LoginController@logout');
 
 
+
+Route::group(['middleware' => ['DashboardCheck','web']], function () {
+
 Route::get('dashboard','DashboardController@dashboard');
 Route::get('product-list','ProductController@product_list');
 Route::get('product-add','ProductController@product_add');
@@ -41,5 +44,24 @@ Route::get('sub-category-id','ProductController@sub_category_id');
 Route::POST('sub-category-save','ProductController@sub_category_save');
 Route::get('company-master','CompanyMasterController@companymaste');
 Route::POST('company-master-save','CompanyMasterController@companymaste_save');
+Route::post('company-edit-submit','CompanyMasterController@company_edit_submit');
 
 
+Route::get('documents','CompanyMasterController@documents_required');
+Route::post('documents-submit','CompanyMasterController@documents_submit');
+Route::post('documents-edit-submit','CompanyMasterController@documents_edit_submit');
+
+
+
+
+
+
+Route::get('agent-list','AgentController@agent_list');
+Route::POST('agent-save','AgentController@agent_save');
+Route::get('elite-card-master','AgentController@mastercard');
+Route::POST('elite-save','AgentController@elite_save');
+
+
+
+});
+Route::get('get-token','AccesstokenController@give_token');

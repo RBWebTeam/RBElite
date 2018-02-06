@@ -106,7 +106,7 @@ $(document).ready(function(){                        //     Product LIst
                            $('#Sub_Category_ID').empty();
                           obj=Array();
                          $.each(msg, function(i, item) {
-                                obj.push('<option value='+item.id+'>'+item.name+'</option>');
+                                obj.push('<option value='+item.id+'>'+item.subcategory+'</option>');
                            });
                             $("#Sub_Category_ID_hide").css("display", "block");
                            $('#Sub_Category_ID').append('<select class="form-control" name="Sub_Category_ID"> '+obj+'</select>');
@@ -142,14 +142,14 @@ $("#category_add_id").click(function(event){  event.preventDefault();
 });
 
 
- function sub_cat_fn(val){
+ function sub_cat_fn(val){  
  $('#p_id').val(val);
  $('#sub_cat_id').empty();
 $.get("{{url('sub-category-id')}}", {"sub_category_id":val})
                    .done(function(msg){ 
                            sub_cat=Array();
                             $.each(msg, function(i, item) {
-                             sub_cat.push('<tr><td>'+item.name+'</td></tr>');
+                             sub_cat.push('<tr><td>'+item.subcategory+'</td></tr>');
                             });
                            $('#sub_cat_id').append(sub_cat);
                            $('#subcategory').modal('show');
@@ -280,4 +280,128 @@ $("#company_master_id").click(function(event){  event.preventDefault();
 
 </script>
 
+<!-- Documents Related -->
+
+<script type="text/javascript">
+  $('#documents').click(function(){
+  
+   if (! $('#documents_form').valid()) 
+    {
+      alert('not valid');
+    } 
+    else {
+          
+         $.ajax({  
+         type: "POST",  
+         url: "{{URL::to('documents-submit')}}",
+         data : $('#documents_form').serialize(),
+         success: function(msg){
+            console.log(msg.message);
+            if (msg.status== 0) 
+            { 
+              alert('Documents Added Successfully');
+            }
+            else
+            {
+               alert('We regret documents could not be Added');
+            }
+                     
+                      
+      }   
+     });
+        
+    }
+  });
+</script>
+
+<script type="text/javascript">
+  $('.do_edit').click(function(){
+
+    var $row = $(this).closest("tr");    // Find the row
+    var doc_id = $row.find(".doc_id").text(); // Find the text
+    var doc_field = $row.find(".doc_field").text()
+    
+    $('.docs_nm').empty().append(doc_field);
+    $('.docs_id').val(doc_id);
+  });
+</script>
+
+<script type="text/javascript">
+  $('#documents_edit').click(function(){
+   // alert('okae');
+  
+          
+         $.ajax({  
+         type: "POST",  
+         url: "{{URL::to('documents-edit-submit')}}",
+         data : $('#documents_edit_form').serialize(),
+         success: function(msg){
+          console.log(msg.message);
+            if (msg.status== 0) 
+            { 
+              alert('Documents have been updated successfully');
+            }
+            else
+            {
+               alert('We regret documents could not be updated');
+            }
+
+            
+                     
+                      
+      }   
+     });
+        
+    
+  });
+</script>
+
+<!-- Company Related -->
+
+<script type="text/javascript">
+  $('.edit').click(function(){
+  
+    var $row = $(this).closest("tr");
+    var id = $row.find(".com_id").text();    // Find the row
+    var name = $row.find(".name").text(); // Find the text
+    var contact_person = $row.find(".contact_person").text()
+    var number = $row.find(".number").text()
+    var email = $row.find(".email").text()
+    var company_id = $row.find(".company_id").text()
+    var logo = $("img", $row).attr("src");
+    // console.log(logo);return false;
+   
+
+    $('.c_id').val(id);
+    $('.company_nm').val(name);
+    $('.contact_person').val(contact_person);
+    $('.contact_no').val(number);
+    $('.email_id').val(email);
+    $('.company_id').val(company_id);
+    // $(".logo").attr( "src","{{url('images/upload')}}");
+
+    
+  });
+</script>
+
+<script type="text/javascript">
+  $('#company_edit').click(function(){
+    alert('okae');
+    $.ajax({
+          url:"{{URL::to('company_edit_submit')}}" ,  
+          data:new FormData($("#company_edit_form")[0]),
+          dataType:'json',
+          async:false,
+          type:'POST',
+          processData: false,
+          contentType: false,
+          success: function(msg){
+             console.log(msg.status);
+             
+              
+            
+            }
+        });
+  });
+</script>
  

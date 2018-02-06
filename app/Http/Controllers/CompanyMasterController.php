@@ -9,7 +9,8 @@ use Validator;
 use Redirect;
 use Session;
 use URL;
-use Mai;
+use Mail;
+use File;
 
 class CompanyMasterController extends Controller
 {
@@ -67,4 +68,37 @@ class CompanyMasterController extends Controller
 
            }    
        }
+
+       public function documents_required(Request $req){
+        $docs=DB::table('documents_required')->get();
+        return view('dashboard.documents',['docs'=>$docs]);
+       }
+
+       public function documents_submit(Request $req){
+         $document_name=$req['docs_name'];
+         $query=DB::table('documents_required')->insert(
+          ['required_field'=>$req->docs_name]
+         );
+         if ( $query) {
+              return response()->json(array('status' =>0,'message'=>"success"));
+            }
+       }
+
+       public function documents_edit_submit(Request $req){ 
+        // print_r($req->all());exit();
+        $docs_id=$req['docs_id'];
+        $docs_nm=$req['docs_nm'];
+         $query=DB::table('documents_required') ->where('id', $docs_id)
+            ->update(['required_field' => $docs_nm]);
+         // print_r($query);exit();
+
+         if ( $query) {
+              return response()->json(array('status' =>0,'message'=>"success"));
+            }
+    }
+
+    public function company_edit_submit(Request $req){
+     print_r($req->all());
+
+    }
 }

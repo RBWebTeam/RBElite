@@ -12,6 +12,7 @@ use Mail;
 
 class UserController extends InitialController
 {
+     public static $service_url_static = "http://services.rupeeboss.com/";
     public function data(Request $req){
     	//print_r(Request::all());
     	return $this::send_success_response("test message","success","askldjaskldjlkasjdklas");
@@ -77,12 +78,13 @@ class UserController extends InitialController
     public function login(Request $req)
     {
         try{
+            
             $query = DB::select('call usp_login(?,?)',array($req->mobile,$req->password));
+
             if(count($query) > 0)   
                 return $this::send_success_response('Login successfully' ,"Success",$query);
              else
-                return $this::send_failure_response("login failed ","failure",$query);
-
+                return $this::send_failure_response("login failed ","failure",$query);     
         }
         catch(Exception $e)
         {
@@ -91,4 +93,8 @@ class UserController extends InitialController
         
     }
 
+    
+
 }
+
+?>

@@ -28,16 +28,15 @@ class LoginController extends InitialController
     ->withInput();
   }else{
           
-          $value=DB::table('emp_login')->where('emailid','=',$request->email)
-          ->where('password','=',md5($request->password))
+          $value=DB::table('user_master')->where('email','=',$request->email)
+          ->where('password','=', $request->password)
           ->first();
           	if($value!=''){ 
-		          	  $request->session()->put('emailid',$value->emailid);
-		          	  $request->session()->put('emptype',$value->emptype);
-		              $request->session()->put('emp_id',$value->emp_id);
-		              $request->session()->put('username',$value->username);
-                  $request->session()->put('last_login',$value->last_login);
-		              
+		          	  $request->session()->put('name',$value->name);
+		          	  $request->session()->put('email',$value->email);
+		              $request->session()->put('user_id',$value->user_id);
+		              $request->session()->put('id',$value->id);
+                 
 		             
                           return redirect()->intended('dashboard');
                 }else{

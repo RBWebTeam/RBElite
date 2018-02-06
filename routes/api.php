@@ -28,11 +28,22 @@ Route::post('getuser-details','UserController@getuser');
 Route::post('update-user','UserController@updateuser');
 Route::post('login','UserController@login');
 Route::get('loadproduct','ProductTypeController@loadproduct');
+
+
 Route::post('insertorder','ProductTypeController@insertorder');
 Route::post('get-tasklist','ProductTypeController@getorderdetails');
-Route::post('update-order','ProductTypeController@updateorderstatus');
+
+
+//Route::post('update-order','ProductTypeController@updateorderstatus');
 Route::post('add-by-pincode','ProductTypeController@loadpincode');
 Route::post('load-states','ProductTypeController@loadstates');
 Route::post('load-cities','ProductTypeController@loadcities');
+Route::post('getincome','TransactionController@getincome');
+Route::post('agent-order-detail','TransactionController@getagentorderdetails');
 
+Route::post('forgot-password','otpController@forgot_password');
+Route::post('change-password','otpController@change_password');
+
+Route::post('get-orders','TransactionController@show_orders');
+Route::post('update-order','TransactionController@update_orders');
 
