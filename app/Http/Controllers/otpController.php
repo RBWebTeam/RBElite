@@ -111,8 +111,8 @@ class otpController extends CallApiController
             $http_result=$result['http_result'];
             $error=$result['error'];
             $obj = json_decode($http_result);
-             $q=DB::table('user_master')->select('mobile')->where('mobile','=',$req['mobile'])->first();
-             $que=DB::table('agent_master')->select('ag_contact_no')->where('ag_contact_no','=',$req['mobile'])->first();
+            $q=DB::table('user_master')->select('mobile')->where('mobile','=',$req['mobile'])->first();
+            $que=DB::table('agent_master')->select('ag_contact_no')->where('ag_contact_no','=',$req['mobile'])->first();
              
              
             if ($type==1 && isset($q->mobile)) {
