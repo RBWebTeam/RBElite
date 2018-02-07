@@ -161,7 +161,7 @@ class otpController extends CallApiController
 
   public function rto(Request $req){
       try {
-        $rto = DB::table('rto_master')->select('rto_location', 'series_no')->get();
+        $rto = DB::table('rto_master')->select('id','rto_location', 'series_no')->get();
      // print_r($rto);exit();
      return $this::send_success_response('RTO updated',"success",$rto);
       } catch (Exception $e) {
