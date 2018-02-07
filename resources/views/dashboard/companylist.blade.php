@@ -47,7 +47,7 @@
 					                  <td class="number">{{$val->contact_no}} </td>
 					                  <td class="email">{{$val->email}} </td>
 					                  <td class="company_id">{{$val->company_id}} </td>
-					                  <td class="logo"><img src="{{url('images/upload')}}/{{$val->logo}}"> </td>
+					                  <td class="logo"><img src="{{url('images/upload')}}/{{$val->logo}}" height="100" width="100"> </td>
 					                  <td>{{$val->created_at}} </td>
 					                  <td>{{$val->ip}} </td>
 					                  <td>{{$val->user_id}} </td>
@@ -115,13 +115,7 @@
 		        </div>
 		    </div>
 
-		      <div class="form-group">
-		        <label for="inputEmail" class="control-label col-xs-3">company id</label>
-		        <div class="col-xs-8">
-		            <input type="text" class="form-control" name="company_id" id="company_id"  >
-		            <span id="company_id_erorr" class="help-inline"></span>
-		        </div>
-		    </div>
+		     
 
 		     <div class="form-group">
 		        <label for="inputEmail" class="control-label col-xs-3">Logo</label>

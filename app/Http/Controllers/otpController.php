@@ -21,10 +21,10 @@ class otpController extends CallApiController
 
 //public function vehicle_inspection_otp(Request $req){
       $status=0;
-      $msg="success";
+      //$msg="success";
       try {
-        $otp=123456;
-      // $otp = mt_rand(100000, 999999);
+        //$otp=123456;
+       $otp = mt_rand(100000, 999999);
       
             Session::put('temp_contact', $req['mobNo']);
             // print_r(Session::get('temp_contact'));exit();
@@ -37,33 +37,16 @@ class otpController extends CallApiController
             $http_result=$result['http_result'];
             $error=$result['error'];
             $obj = json_decode($http_result);
-            // print_r($obj);exit();
+            //print_r($obj->status);
 
-            //echo $obj->status;//$http_result["status"];
-            // print_r($post_data);exit();
-            // statusId response 0 for success, 1 for failure
 
-            /*$query=DB::table('vehicle_inspection_otp')
-            ->insertGetId(['mobile_no'=>$req->mobile,
-              'otp'=>$otp,
-              'created_at'=>date("Y-m-d H:i:s"),
-              'updated_at'=>date("Y-m-d H:i:s")]);
-            
-            if ($query) {
-              return response()->json(array('status' =>0,'message'=>"success"));
-            }*/
-      /*} catch (Exception $ee) {
-        return response()->json(array('status' =>1,'message'=>$ee->getMessage()));
-      }*/
-      
-    
-    //echo $http_result[0]->status." ";
-   echo $obj->status;
-
-////////////////////////////////
       
       if($obj->status == "success"){
+
+        echo $obj->status;
+
       $query = DB::select('call usp_insert_otp(?,?,?,?)',array($otp,$req->email,$req->mobNo,$req->ip));
+      print_r($query);
       return $this::send_success_response('OTP Generated succesfully',"Success",$otp);
     }
     else{
@@ -151,6 +134,7 @@ class otpController extends CallApiController
      $confirm_password = $req['confirm_password'];
 
 
+
      if ($new_password == $confirm_password ) {
       if ($type==1) {
        $query=DB::table('user_master') ->where('mobile', $req['mobile'])
@@ -158,6 +142,7 @@ class otpController extends CallApiController
             if ($query) {
               return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been updated"));
             }
+
       }elseif ($type==2) {
         $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
             ->update(['agent_password' => $confirm_password]);

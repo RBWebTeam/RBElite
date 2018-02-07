@@ -8,7 +8,7 @@ use DB;
 class TransactionController extends InitialController
 {
     //
-       public $client_id='3bltoyw0MheRMwXY7CoubY4ZKaLdbYIwo3CV0Eyn';
+    public $client_id='3bltoyw0MheRMwXY7CoubY4ZKaLdbYIwo3CV0Eyn';
     public $client_secret='97bbMq9fepAqgrQzd2SIboiQMWKb7dtBg8MLfj5ysBbjULVsyQDiIViZ8GUiN0NNfbHU7RLh4ZNVfKJkoJK4I4LQUFZX2nR41jbE5qH6MRn5uM2RYIgEiTdYw5aOdAvO';
     public $url = "https://api.instamojo.com/oauth2/token/";
     public $env = "production";
@@ -40,19 +40,18 @@ class TransactionController extends InitialController
         //print_r($json);exit();
         if (isset($json->error)) {
             return "Error: " . $json->error;
-            throw new \Exception("Error: " . $json->error);
+            throw new Exception("Error: " . $json->error);
         }
         $this->token = $json;
 
         return $this->env. $json->access_token;
     }
-        public function give_token(Request $req){
-       
-
+    
+    public function give_token(Request $req){       
         $token= $this::getToken();
-        
         return ($token);
     }
+
     public function show_orders(Request $req){
         try {
             $user_id=$req['user_id'];
@@ -64,11 +63,13 @@ class TransactionController extends InitialController
                 print_r($data);
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this::send_failure_response($e->getMessage(),"failure",[]); 
         }
        // return Response::json($data);
     }
+
+
      public function update_orders(Request $req){
         
           try {
@@ -83,9 +84,68 @@ class TransactionController extends InitialController
                     $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump]);
                     return $this::send_success_response('Data Updated' ,"Success",$data);
 
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     return $this::send_failure_response($e->getMessage(),"failure",[]);
                     //return $e->getMessage();//$this::send_failure_response($e->getMessage(),"failure",""); 
                 }
     }
+
+   public function getincome(Request $req)
+    {
+         try {
+            $user_id=$req['agent_id'];
+            $data=DB::select('call usp_getagentincome(?)',[$user_id]);
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded' ,"Success",$data);
+            }else{
+                print_r($data);
+                return $this::send_failure_response("No order to show","failure",array()); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+        }
+        
+    }
+
+    public function getagentorderdetails(Request $req)
+    {
+        try {
+            $user_id=$req['agent_id'];
+            $status_id = $req['status_id'];
+            $data=DB::select('call usp_getagentorders(?,?)',array($user_id,$status_id));
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded' ,"Success",$data);
+            }else{
+                print_r($data);
+                return $this::send_failure_response("No order to show","failure",array()); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+        }
+        
+    }
+
+    public function updateorderstatus(Request $req)    
+    {
+                try {
+            $order_id=$req['order_id'];
+            $status_id = $req['order_status'];
+            $order_remark = $req['order_remark'];
+            $agent_id = $req['agent_id'];
+
+            $data=DB::select('call usp_update_order_status(?,?,?,?)',array($order_id,$agent_id,$status_id,$order_remark));
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded' ,"Success",$data);
+            }else{
+                print_r($data);
+                return $this::send_failure_response("No order to show","failure",array()); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+        }        
+    }
+
 }

@@ -39,7 +39,6 @@ class CompanyMasterController extends Controller
                 'contact_person' => 'required',
                 'contact' => 'required|regex:/^[0-9]{10}+$/',
                 'email' => 'required|email',
-                'company_id' => 'required',
                 'logo' => 'required | mimes:jpeg,jpg,png | max:1000'
                  
                             ]);
@@ -57,7 +56,6 @@ class CompanyMasterController extends Controller
      'contact_person'         =>$req->contact, 
      'contact_no'     =>$req->contact_no, 
      'email'         =>$req->email, 
-     'company_id' =>$req->company_id,
      'logo'  =>$fileName,
      'created_at'      =>date('Y-m-d H:i:s'),
      'ip'              =>$req->ip(),

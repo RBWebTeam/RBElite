@@ -10,8 +10,11 @@ use Redirect;
 use Session;
 use URL;
 use Mail;
+use App\library\Pagination ;
+
 
 class AgentController extends InitialController
+
 {
        
 
@@ -69,10 +72,10 @@ class AgentController extends InitialController
 
 
         public  function mastercard(){
-                         $count=DB::table("elite_card_master")->select('inc')->get();
-                         
+         $pagin=new Pagination();
 
- 
+
+$count=DB::table("elite_card_master")->select('inc')->get();
 if(isset($_GET["page"])){
       $page = (int)$_GET["page"];
     }else{
@@ -81,7 +84,7 @@ if(isset($_GET["page"])){
 
     $setLimit = 10;
     $pageLimit = ($page * $setLimit) - $setLimit;
-    $pagina=$this->displayPaginationBelow($setLimit,$page,count($count));
+    $pagina=$pagin->displayPaginationBelow($setLimit,$page,count($count));
 
                           $card=DB::select('call sp_elite_card_master(?,?)',array($pageLimit,$setLimit));
                          $company_master=DB::table("company_master")->select('id','name')->get();
@@ -168,144 +171,7 @@ public function rto_save(Request $req){
 }
 
 
-public function displayPaginationBelow($per_page,$page,$count){
- 
-       $page_url="?";
-  
- 
-        $total = $count;
- 
-        $adjacents = "2";
- 
- 
- 
-        $page = ($page == 0 ? 1 : $page); 
- 
-        $start = ($page - 1) * $per_page;                              
- 
-         
- 
-        $prev = $page - 1;                         
- 
-        $next = $page + 1;
- 
-        $setLastpage = ceil($total/$per_page);
- 
-        $lpm1 = $setLastpage - 1;
- 
-         
- 
-        $setPaginate = "";
- 
-        if($setLastpage > 1)
- 
-        {  
- 
-            $setPaginate .= "<ul class='setPaginate'>";
- 
-                    $setPaginate .= "<li class='setPage'>Page $page of $setLastpage</li>";
- 
-            if ($setLastpage < 7 + ($adjacents * 2))
- 
-            {  
- 
-                for ($counter = 1; $counter <= $setLastpage; $counter++)
- 
-                {
- 
-                    if ($counter == $page)
- 
-                        $setPaginate.= "<li><a class='current_page'>$counter</a></li>";
- 
-                    else
- 
-                        $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
- 
-                }
- 
-            }
- 
-            elseif($setLastpage > 5 + ($adjacents * 2))
- 
-            {
- 
-                if($page < 1 + ($adjacents * 2))    
- 
-                {
- 
-                    for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
- 
-                    {
- 
-                        if ($counter == $page)
- 
-                            $setPaginate.= "<li><a class='current_page'>$counter</a></li>";
- 
-                        else
- 
-                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
- 
-                    }
- 
-                    $setPaginate.= "<li class='dot'>...</li>";
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=$lpm1'>$lpm1</a></li>";
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";     
- 
-                }
- 
-                elseif($setLastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
- 
-                {
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=1'>1</a></li>";
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=2'>2</a></li>";
- 
-                    $setPaginate.= "<li class='dot'>...</li>";
- 
-                    for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
- 
-                    {
- 
-                        if ($counter == $page)
- 
-                            $setPaginate.= "<li><a class='current_page'>$counter</a></li>";
- 
-                        else
- 
-                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
- 
-                    }
- 
-                    $setPaginate.= "<li class='dot'>..</li>";
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=$lpm1'>$lpm1</a></li>";
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";     
- 
-                }
- 
-                else
- 
-                {
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=1'>1</a></li>";
- 
-                    $setPaginate.= "<li><a href='{$page_url}page=2'>2</a></li>";
- 
-                    $setPaginate.= "<li class='dot'>..</li>";
- 
-                    for ($counter = $setLastpage - (2 + ($adjacents * 2)); $counter <= $setLastpage; $counter++)
 
-                    {
-
-                        if ($counter == $page)
-
-                            $setPaginate.= "<li><a class='current_page'>$counter</a></li>";
-
-                        else
 
                             $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
 
@@ -356,5 +222,6 @@ public function displayPaginationBelow($per_page,$page,$count){
      
 
     }
+
  
 }

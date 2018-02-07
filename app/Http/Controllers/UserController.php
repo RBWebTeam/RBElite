@@ -32,7 +32,10 @@ class UserController extends InitialController
         try{        
 
             $query = DB::select('call usp_user_insert(?,?,?,?,?)',array($req->elite_card_no,$req->policy_no,$req->mobile_no,$req->email_address,$req->password));
-            return $this::send_success_response($query[0]->Result ,"Success",$query[0]->Result);
+            if(count($query) > 0)    
+                return $this::send_success_response("insert succeed" ,"Success",$query);
+            else
+                return $this::send_failure_response("insert failed ","failure",$query);
         }
         catch(Exception $e)
         {
@@ -44,8 +47,10 @@ class UserController extends InitialController
     {
         try{
             $query = DB::select('call usp_getuser_detail(?,?)',array($req->mobile,$req->email));
-
-            return $this::send_success_response("Records fetched successfully","success",$query);
+            if(count($query) > 0)
+                return $this::send_success_response("Records fetched successfully","success",$query);
+             else
+                return $this::send_failure_response("get user failed ","failure",$query);            
         }
         catch(Exception $e)
         {
@@ -56,9 +61,13 @@ class UserController extends InitialController
     public function updateuser(Request $req)
     {
         try{
-            $query = DB::select('call usp_updateuser_details(?,?,?,?,?,?,?,?,?,?,?)',array($req->name,$req->email,$req->mobile,
-            $req->rto,$req->expirydate,$req->address,$req->area,$req->pincode,$req->city,$req->state,$req->otp));
-            return $this::send_success_response($query[0]->Result ,"Success",$query[0]->Result);
+            $query = DB::select('call usp_updateuser_details(?,?,?,?,?,?,?,?,?,?)',array($req->name,$req->email,$req->mobile,
+            $req->rto,$req->address,$req->area,$req->pincode,$req->city,$req->state,$req->otp));
+            
+            if(count($query) > 0)
+                return $this::send_success_response($query[0]->Result ,"Success",$query[0]->Result);
+             else
+                return $this::send_failure_response("update user failed ","failure",$query);            
         }
         catch(Exception $e)
         {
@@ -69,8 +78,17 @@ class UserController extends InitialController
     public function login(Request $req)
     {
         try{
-        $query = DB::select('call usp_login(?,?)',array($req->mobile,$req->password));
-            return $this::send_success_response('Login successfully' ,"Success",$query);
+            
+            $query = DB::select('call usp_login(?,?)',array($req->mobile,$req->password));
+
+            $orderstatus = DB::select('call usp_orderstatus_master()');
+
+            $arr = array('userdetails' => $query, 'orderstatuslist'=>$orderstatus );
+
+            if(count($query) > 0)   
+                return $this::send_success_response('Login successfully' ,"Success",$arr);
+             else
+                return $this::send_failure_response("login failed ","failure",$query);     
         }
         catch(Exception $e)
         {
@@ -82,3 +100,5 @@ class UserController extends InitialController
     
 
 }
+
+?>
