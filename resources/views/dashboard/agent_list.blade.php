@@ -25,8 +25,14 @@
 					                 <thead>
 					                  <tr>
 					                  
-					                   <th>Category  Name</th>
-                                        <th>Subcategory  </th>
+					                   <th>   Name</th>
+                                        <th>Address  </th>
+                                        <th>contact No </th>
+                                        <th>Email ID</th>
+                                         
+                                          <th>RTO Address</th>
+                                           <th>RTO Location</th>
+                                           <th>  Date</th>
 
 
 					                 </tr>
@@ -35,8 +41,14 @@
 					               
 					                   @foreach($agent_m as $val)
 					                    <tr>
-					                    <td>Category  Name</td>
-                                        <td>Subcategory  </td>
+					                    <td>{{$val->ag_name}}</td>
+                                        <td>{{$val->ag_address}}</td>
+                                          <td>{{$val->ag_contact_no}}</td>
+                                          <td>{{$val->ag_email}}</td>
+                                          
+                                          <td>{{$val->rto_location}}</td>
+                                           <td>{{$val->series_no}}</td>
+                                           <td>{{$val->created_at}}</td>
                                               </tr>
                                          @endforeach
                                
