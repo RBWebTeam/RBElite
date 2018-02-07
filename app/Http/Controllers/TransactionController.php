@@ -40,7 +40,7 @@ class TransactionController extends InitialController
         //print_r($json);exit();
         if (isset($json->error)) {
             return "Error: " . $json->error;
-            throw new \Exception("Error: " . $json->error);
+            throw new Exception("Error: " . $json->error);
         }
         $this->token = $json;
 
@@ -63,7 +63,7 @@ class TransactionController extends InitialController
                 print_r($data);
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this::send_failure_response($e->getMessage(),"failure",[]); 
         }
        // return Response::json($data);
@@ -83,11 +83,8 @@ class TransactionController extends InitialController
                     
                     $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump]);
                     return $this::send_success_response('Data Updated' ,"Success",$data);
-                
-                
-              
-                    
-                } catch (\Exception $e) {
+
+                } catch (Exception $e) {
                     return $this::send_failure_response($e->getMessage(),"failure",[]);
                     //return $e->getMessage();//$this::send_failure_response($e->getMessage(),"failure",""); 
                 }
@@ -105,7 +102,7 @@ class TransactionController extends InitialController
                 print_r($data);
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this::send_failure_response($e->getMessage(),"failure",[]); 
         }
         
@@ -124,7 +121,7 @@ class TransactionController extends InitialController
                 print_r($data);
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this::send_failure_response($e->getMessage(),"failure",[]); 
         }
         

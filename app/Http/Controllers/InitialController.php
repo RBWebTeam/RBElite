@@ -13,6 +13,7 @@ class InitialController extends Controller
       public function send_failure_response($message,$status,$data){
 
       	$res = array('message' =>$message ,'status'=>$status,'status_code'=>1,'Data'=>[] );
+
       	return Response::json($res);
       }
 }

@@ -81,8 +81,12 @@ class UserController extends InitialController
             
             $query = DB::select('call usp_login(?,?)',array($req->mobile,$req->password));
 
+            $orderstatus = DB::select('call usp_orderstatus_master()');
+
+            $arr = array('userdetails' => $query, 'orderstatuslist'=>$orderstatus );
+
             if(count($query) > 0)   
-                return $this::send_success_response('Login successfully' ,"Success",$query);
+                return $this::send_success_response('Login successfully' ,"Success",$arr);
              else
                 return $this::send_failure_response("login failed ","failure",$query);     
         }
