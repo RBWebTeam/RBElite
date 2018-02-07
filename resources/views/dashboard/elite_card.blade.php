@@ -7,7 +7,33 @@
 								 <div class="container-fluid white-bg">
 								 <div class="col-md-12"><h3 class="mrg-btm">Elite List</h3></div>
 
-								 
+								  <!-- Date Start -->
+
+                                <form action="{{url('elite-card-master')}}" method="GET">
+             <div class="col-md-4">
+            <div class="form-group">
+                <p>From Date</p>
+               <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+               <input class="form-control" type="text" placeholder="From Date" name="from_date" />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+           </div>
+           <div class="col-md-4">
+             <div class="form-group">
+             <p>To Date</p>
+               <div id="datepicker1" class="input-group date" data-date-format="mm-dd-yyyy">
+               <input class="form-control" type="text" placeholder="From Date" name="from_to" />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+           </div>
+           <div class="col-md-4">
+           <div class="form-group"> <input type="submit"   value="SHOW" class="common-btn mrg-top"> </div>
+           </div>
+
+           </form>
+           <!-- Date End -->
 								  
 								 
 								 <!-- Date Start -->
@@ -15,13 +41,15 @@
 								<div class="form-group">
 					                <p> <a href="#" class="btn btn-default btn-sm"    data-toggle="modal" data-target="#Elite-Modal"> <span class="glyphicon glyphicon-plus"></span> Agent  </a> </p>
 					            </div>
+
+
 					           </div>
 							  
 							   
 								 <div class="col-md-12">
 								 <div class="overflow-scroll">
 								 <div class="table-responsive" >
-									<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="example">
+									<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap"  >
 					                 <thead>
 					                  <tr>
 					                    <th>ID</th>
@@ -47,7 +75,7 @@
 					            </table>
 								</div>
 								</div>
-								
+								  <?php echo $pagina ;?>
 								 
 								</div>
 								
@@ -55,7 +83,7 @@
 					            </div>
 					   
                                 
-                        <?php echo $pagina ;?>
+                      
 						
 
 
