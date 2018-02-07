@@ -24,7 +24,7 @@
 									<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="example">
 					                 <thead>
 					                  <tr>
-					                  
+					                    <th>ID</th>
 					                    <th>Card Name</th>
                                         <th>Short Name</th>
                                         <th>Card Number</th>
@@ -36,6 +36,7 @@
 					                <tbody>
 					                <tr>
 					                  @foreach($card as $val)
+					                   <td>{{$val->inc}}</td>
 					                    <td>{{$val->name}}</td>
                                          <td>{{$val->Short_Name}}</td>
                                           <td>{{$val->serial_card}}</td>
@@ -52,10 +53,9 @@
 								
 					            </div>
 					            </div>
-								<!-- Body Content Start ---->
-								
-
-
+					   
+                                
+                        <?php echo $pagina ;?>
 						
 
 
@@ -125,4 +125,161 @@
 
 @endsection		
 
+ <?php 
+   
  
+
+
+
+ ?>
+
+
+ <style type="text/css">
+ 	
+ 	.navi {
+ 
+    width: 500px;
+ 
+    margin: 5px;
+ 
+    padding:2px 5px;
+ 
+    border:1px solid #eee;
+ 
+    }
+ 
+ 
+ 
+    .show {
+ 
+    color: blue;
+ 
+    margin: 5px 0;
+ 
+    padding: 3px 5px;
+ 
+    cursor: pointer;
+ 
+    font: 15px/19px Arial,Helvetica,sans-serif;
+ 
+    }
+ 
+    .show a {
+ 
+    text-decoration: none;
+ 
+    }
+ 
+    .show:hover {
+ 
+    text-decoration: underline;
+ 
+    }
+ 
+ 
+ 
+ 
+ 
+    ul.setPaginate li.setPage{
+ 
+    padding:15px 10px;
+ 
+    font-size:14px;
+ 
+    }
+ 
+ 
+ 
+    ul.setPaginate{
+ 
+    margin:0px;
+ 
+    padding:0px;
+ 
+    height:100%;
+ 
+    overflow:hidden;
+ 
+    font:12px 'Tahoma';
+ 
+    list-style-type:none;  
+ 
+    } 
+ 
+ 
+ 
+    ul.setPaginate li.dot{padding: 3px 0;}
+ 
+ 
+ 
+    ul.setPaginate li{
+ 
+    float:left;
+ 
+    margin:0px;
+ 
+    padding:0px;
+ 
+    margin-left:5px;
+ 
+    }
+ 
+ 
+    ul.setPaginate li a
+ 
+    {
+ 
+    background: none repeat scroll 0 0 #ffffff;
+     border: 1px solid #cccccc;
+ 
+    color: #999999;
+ 
+    display: inline-block;
+ 
+    font: 15px/25px Arial,Helvetica,sans-serif;
+ 
+    margin: 5px 3px 0 0;
+ 
+    padding: 0 5px;
+ 
+    text-align: center;
+ 
+    text-decoration: none;
+ 
+    }  
+ 
+ 
+ 
+    ul.setPaginate li a:hover,
+ 
+    ul.setPaginate li a.current_page
+ 
+    {
+ 
+    background: none repeat scroll 0 0 #0d92e1;
+ 
+    border: 1px solid #000000;
+ 
+    color: #ffffff;
+ 
+    text-decoration: none;
+ 
+    }
+ 
+ 
+ 
+    ul.setPaginate li a{
+ 
+    color:black;
+ 
+    display:block;
+ 
+    text-decoration:none;
+ 
+    padding:5px 8px;
+ 
+    text-decoration: none;
+ 
+    }
+
+ </style>

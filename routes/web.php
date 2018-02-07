@@ -61,7 +61,8 @@ Route::POST('agent-save','AgentController@agent_save');
 Route::get('elite-card-master','AgentController@mastercard');
 Route::POST('elite-save','AgentController@elite_save');
 
-
+Route::get('rto-list','AgentController@rto_list');
+Route::POST('rto-save','AgentController@rto_save');
 
 });
 Route::get('get-token','AccesstokenController@give_token');

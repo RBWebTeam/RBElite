@@ -10,6 +10,7 @@
 
      <li class="nav-item"><a href="{{url('agent-list')}}"><span class="sp-nav"><img src="images/icon/home.png"></span>&nbsp;&nbsp;Agent Master</a> </li>
  <li class="nav-item"><a href="{{url('elite-card-master')}}"><span class="sp-nav"><img src="images/icon/home.png"></span>&nbsp;&nbsp;Elite Card Master</a> </li>
+  <li class="nav-item"><a href="{{url('rto-list')}}"><span class="sp-nav"><img src="images/icon/home.png"></span>&nbsp;&nbsp;RTO Master</a> </li>
     </ul>
    </nav>
 </div>
