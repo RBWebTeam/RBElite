@@ -118,7 +118,7 @@ class TransactionController extends InitialController
             if(sizeof($data)>0){
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
-                print_r($data);
+                //print_r($data);
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
         } catch (Exception $e) {
@@ -140,7 +140,7 @@ class TransactionController extends InitialController
             if(sizeof($data)>0){
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
-                print_r($data);
+                //print_r($data);
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
         } catch (Exception $e) {

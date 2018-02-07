@@ -28,11 +28,10 @@ class ProductController extends Controller
 
 
            $query=DB::table('product_type_master')->select('id','name')->get();
+           $company=DB::table('company_master')->select('id','name')->get();
            $docu_required=DB::table('documents_required')->get();
 
-
-           
-           return view('dashboard.product_add',['query'=>$query,'docu_required'=>$docu_required]);
+           return view('dashboard.product_add',['query'=>$query,'docu_required'=>$docu_required,'company'=>$company]);
          
 
   }
@@ -52,14 +51,17 @@ class ProductController extends Controller
 
 
  
- public function product_save(Request $req){       
+ public function product_save(Request $req){      
+  $destinationPath = public_path(). '/images/upload'; 
     $validator = Validator::make($req->all(), [
     'name' => 'required',
-    'category_id' => 'required',
+    'category_id' => 'required|not_in:0',
      'Sub_Category_ID' => 'required',
       'charge' => 'required',
        'agent_commision' => 'required',
-        'required_field' => 'required',
+         'logo' => 'required | mimes:jpeg,jpg,png  ',
+        'company' =>'required|not_in:0',
+        'required_field' => 'required|not_in:0',
             ]);
 
   if ($validator->fails()) {
@@ -67,6 +69,10 @@ class ProductController extends Controller
     ->withErrors($validator)
     ->withInput();
   }else{
+    $logo = $req->file('logo');
+                          $fileName = rand(1, 999) . $logo->getClientOriginalName();
+                          $logo->move($destinationPath, $fileName);  
+
  DB::table('product_master')->insert([
     ['name'            =>$req->name, 
      'catg_id'         =>$req->category_id, 
@@ -78,7 +84,9 @@ class ProductController extends Controller
      'created_at'      =>date('Y-m-d H:i:s'),
      'is_active'       =>0,
      'ip'              =>$req->ip(),
-     'user_id'         =>0,
+     'user_id'         =>Session::get('id'),
+     'company_id'      =>$req->company,
+     'product_logo'      =>$fileName,
  ],   
 ]);
 

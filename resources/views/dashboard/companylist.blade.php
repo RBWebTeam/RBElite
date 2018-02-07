@@ -23,16 +23,16 @@
 									<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="example">
 					                 <thead>
 					                  <tr>
-					                    <th>ID</th>
+					                    
 					                    <th>Category  Name</th>
                                         <th>contact_person</th>
                                         <th>contact_no</th>
                                         <th>email</th>
-                                        <th>company_id</th>
+                                       
                                         <th>logo</th>
                                         <th>date</th>
                                         <th>ip</th>
-                                        <th>user_id</th>
+                                        
                                         <th>Edit</th>
 
 
@@ -41,16 +41,16 @@
 					                <tbody>
 					               @foreach($company_master as $key=> $val)
 					                 <tr>
-					                  <td class="com_id">{{$val->id}} </td>
+					                  
 					                  <td class="name">{{$val->name}} </td>
 					                  <td class="contact_person">{{$val->contact_person}} </td>
 					                  <td class="number">{{$val->contact_no}} </td>
 					                  <td class="email">{{$val->email}} </td>
-					                  <td class="company_id">{{$val->company_id}} </td>
+					               
 					                  <td class="logo"><img src="{{url('images/upload')}}/{{$val->logo}}" height="100" width="100"> </td>
 					                  <td>{{$val->created_at}} </td>
 					                  <td>{{$val->ip}} </td>
-					                  <td>{{$val->user_id}} </td>
+					                 
 					                  <td><i style="color: #2980B9" class="fas fa-edit"></i><a href="#" data-toggle="modal" class="edit" data-target="#company_edit"> Edit</a></td>
 					                    
 					                 
