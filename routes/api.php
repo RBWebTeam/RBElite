@@ -45,7 +45,7 @@ Route::post('update-order-status','TransactionController@updateorderstatus');
 
 Route::post('forgot-password','otpController@forgot_password');
 Route::post('change-password','otpController@change_password');
-Route::get('rto-location','AgentController@rto');
+Route::get('rto-location','otpController@rto');
 
 
 
