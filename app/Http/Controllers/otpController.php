@@ -121,7 +121,7 @@ class otpController extends CallApiController
             
               return response()->json(array('status' =>0,'message'=>"success"));
             
-            } elseif ($type==2 && $que->ag_contact_no) {
+            } elseif ($type==2 && isset($que->ag_contact_no)) {
               $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
             ->update(['agent_password' => $password]);
             
