@@ -51,16 +51,41 @@ class TransactionController extends InitialController
 
         $token= $this::getToken();
         
-		return ($token);
+        return ($token);
     }
     public function show_orders(Request $req){
-        $data=DB::select('select * from view_sales_order');
+        try {
+            $user_id=$req['user_id'];
+            $data=DB::select('call view_sales_orders(?)',[$user_id]);
 
-        if(sizeof($data)>0){
-            return $this::send_success_response('Data loaded' ,"Success",$data);
-        }else{
-            return $this::send_failure_response("No order to show","failure",""); 
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded' ,"Success",$data);
+            }else{
+                print_r($data);
+                return $this::send_failure_response("No order to show","failure",array()); 
+            }
+        } catch (\Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",[]); 
         }
        // return Response::json($data);
+    }
+     public function update_orders(Request $req){
+        
+          try {
+                    $dump=json_encode($req->all());
+                    $order_id=$req['order_id'];
+                    $pg_date=$req['payment_datetime'];
+                    $remark=$req['remark'];
+                    $txnid=$req['transaction_id'];
+                    $pg_status=$req['status'];
+               
+                    
+                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump]);
+                    return $this::send_success_response('Data Updated' ,"Success",$data);
+
+                } catch (\Exception $e) {
+                    return $this::send_failure_response($e->getMessage(),"failure",[]);
+                    //return $e->getMessage();//$this::send_failure_response($e->getMessage(),"failure",""); 
+                }
     }
 }

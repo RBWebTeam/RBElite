@@ -35,4 +35,6 @@ Route::post('forgot-password','otpController@forgot_password');
 Route::post('change-password','otpController@change_password');
 
 Route::post('get-orders','TransactionController@show_orders');
- 
+
+
+Route::post('update-order','TransactionController@update_orders');
