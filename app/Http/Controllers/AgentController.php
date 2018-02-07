@@ -11,7 +11,7 @@ use Session;
 use URL;
 use Mail;
 
-class AgentController extends Controller
+class AgentController extends InitialController
 {
        
 
@@ -342,6 +342,18 @@ public function displayPaginationBelow($per_page,$page,$count){
      
 
         return $setPaginate;
+
+    }
+
+    public function rto(Request $req){
+      try {
+        $rto = DB::table('rto_master')->select('rto_location', 'series_no')->get();
+     // print_r($rto);exit();
+     return $this::send_success_response('RTO updated',"success",$rto);
+      } catch (Exception $e) {
+        return $this::send_failure_response($e->getMessage(),"failure",null);
+      }
+     
 
     }
  
