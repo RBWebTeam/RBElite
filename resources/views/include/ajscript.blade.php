@@ -81,5 +81,29 @@ $("#Elite_add_id").click(function(event){  event.preventDefault();
    
 })
 
+$("#rto_add_id").click(function(event){  event.preventDefault();
+ 
+    if($('#rto_location').val()!=0 && $('#series_no').val()!=0 ){
+ $.post("{{url('rto-save')}}", $('#rto_add_from').serialize())
+             .done(function(msg){ 
+
+                     if(msg==0){
+                              window.location.href = "{{url('rto-list')}}";
+                     }else{
+                      console.log("error");
+                     }
+
+                         
+                     }).fail(function(xhr, status, error) {
+                 console.log(error);
+            });
+                 }else{
+                    
+                   $('#rto_valid_id').text("Please fill out this form carefully...");
+                 }
+   
+})
+
+
 
 </script>
