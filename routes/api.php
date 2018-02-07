@@ -40,9 +40,13 @@ Route::post('load-states','ProductTypeController@loadstates');
 Route::post('load-cities','ProductTypeController@loadcities');
 Route::post('getincome','TransactionController@getincome');
 Route::post('agent-order-detail','TransactionController@getagentorderdetails');
+Route::post('update-order-status','TransactionController@updateorderstatus');
+
 
 Route::post('forgot-password','otpController@forgot_password');
 Route::post('change-password','otpController@change_password');
+
+
 
 Route::post('get-orders','TransactionController@show_orders');
 

@@ -40,7 +40,7 @@ class ProductTypeController extends InitialController
 			$category = DB::select('call usp_loadCategory()');
 			$count = count($category);
 
-			print_r($category)
+			
 
 			$subcategory = DB::select('call usp_loadsubcategory()');
 			$countsub = count($subcategory);

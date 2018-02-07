@@ -127,4 +127,25 @@ class TransactionController extends InitialController
         
     }
 
+    public function updateorderstatus(Request $req)    
+    {
+                try {
+            $order_id=$req['order_id'];
+            $status_id = $req['order_status'];
+            $order_remark = $req['order_remark'];
+            $agent_id = $req['agent_id'];
+
+            $data=DB::select('call usp_update_order_status(?,?,?,?)',array($order_id,$agent_id,$status_id,$order_remark));
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded' ,"Success",$data);
+            }else{
+                print_r($data);
+                return $this::send_failure_response("No order to show","failure",array()); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+        }        
+    }
+
 }
