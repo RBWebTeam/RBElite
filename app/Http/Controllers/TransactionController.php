@@ -61,10 +61,10 @@ class TransactionController extends InitialController
                 return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
                 
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
       
     }
@@ -79,13 +79,14 @@ class TransactionController extends InitialController
                     $remark=$req['remark'];
                     $txnid=$req['transaction_id'];
                     $pg_status=$req['status'];
-                    $series_no = $req['series_no'];
+                    $rto=$req["rto_id"];
                     
-                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$series_no,$dump]);
-                    return $this::send_success_response('Record updated successfully' ,"Success",$data);
+                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump,$rto]);
+                    return $this::send_success_response('Data Updated Successfully' ,"Success",$data);
+
 
                 } catch (Exception $e) {
-                    return $this::send_failure_response($e->getMessage(),"failure",[]);
+                    return $this::send_failure_response($e->getMessage(),"failure","");
                    
                 }
     }
@@ -125,10 +126,10 @@ class TransactionController extends InitialController
                 return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
                 
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
         
     }
@@ -144,13 +145,13 @@ class TransactionController extends InitialController
             $data=DB::select('call usp_update_order_status(?,?,?,?)',array($order_id,$agent_id,$status_id,$order_remark));
 
             if(sizeof($data)>0){
-                return $this::send_success_response('Order status updated successfully' ,"Success",[]);
+                return $this::send_success_response('Order status updated successfully' ,"Success","");
             }else{
-                print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+               // print_r($data);
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }        
     }
 
@@ -164,11 +165,11 @@ class TransactionController extends InitialController
             if(sizeof($data)>0){
                 return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+              //  print_r($data);
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }                
     }
 
@@ -184,10 +185,10 @@ class TransactionController extends InitialController
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
                 
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }        
     }
 
