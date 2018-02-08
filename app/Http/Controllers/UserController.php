@@ -86,9 +86,9 @@ class UserController extends InitialController
             $arr = array('userdetails' => $query, 'orderstatuslist'=>$orderstatus );
 
             if(count($query) > 0)   
-                return $this::send_success_response('Login successfully' ,"Success",$arr);
+                return $this::send_success_response('Login successfully' ,"Success",[$arr]);
              else
-                return $this::send_failure_response("login failed ","failure",$query);     
+                return $this::send_failure_response("Incorrect Username or password entered","failure",$query);     
         }
         catch(Exception $e)
         {

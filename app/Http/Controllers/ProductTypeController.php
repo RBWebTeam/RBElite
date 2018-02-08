@@ -67,7 +67,7 @@ class ProductTypeController extends InitialController
 		// print_r($req->all());exit();
 				try{
 
-        	$query = DB::select('call usp_order_details_insert(?,?)',array($req->prodid,$req->userid));
+        	$query = DB::select('call usp_order_details_insert(?,?,?)',array($req->prodid,$req->userid,$req->rto_id));
 			
 			if(count($query) > 0)            	
             	return $this::send_success_response('Oreder Placed successfully' ,"Success",$query);
