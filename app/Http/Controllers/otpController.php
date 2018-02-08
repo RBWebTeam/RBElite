@@ -132,23 +132,28 @@ class otpController extends CallApiController
      $current_password = $req['current_password'];
      $new_password = $req['new_password'];
      $confirm_password = $req['confirm_password'];
-
+    
+     $q=DB::table('user_master')->select('mobile')->where('mobile','=',$req['mobile'])->first();
+     $que=DB::table('agent_master')->select('ag_contact_no')->where('ag_contact_no','=',$req['mobile'])->first();
 
 
      if ($new_password == $confirm_password ) {
-      if ($type==1) {
+
+      if ($type==1 && isset($q->mobile)) {
        $query=DB::table('user_master') ->where('mobile', $req['mobile'])
             ->update(['password' => $confirm_password]);
             if ($query) {
               return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been updated"));
             }
 
-      }elseif ($type==2) {
+      }elseif ($type==2 && isset($que->ag_contact_no)) {
         $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
             ->update(['agent_password' => $confirm_password]);
             if ($query) {
               return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been updated"));
             }
+      }else{
+        return response()->json(array('status_code' =>1,'status'=>"failure",'message'=>"Number doesnt match."));
       }
         
      }elseif ($new_password != $confirm_password) {
