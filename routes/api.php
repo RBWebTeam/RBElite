@@ -41,6 +41,8 @@ Route::post('load-cities','ProductTypeController@loadcities');
 Route::post('getincome','TransactionController@getincome');
 Route::post('agent-order-detail','TransactionController@getagentorderdetails');
 Route::post('update-order-status','TransactionController@updateorderstatus');
+Route::post('getpending-wallet','TransactionController@getpendingwallet');
+Route::post('agent-amt-request','TransactionController@agentamtrequest');
 
 
 Route::post('forgot-password','otpController@forgot_password');
