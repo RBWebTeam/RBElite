@@ -95,20 +95,20 @@ class TransactionController extends InitialController
          try {
             $user_id=$req['agent_id'];
             $sata=DB::select('call usp_getagentincome(?)',[$user_id]);
-            $data=null;
+            
             foreach ($sata as $key => $value) {
                 $data[$value->Status]=$value->count;
             }
            
            
             if(sizeof($data)>0){
-                return $this::send_success_response('Data loaded' ,"Success",$data);
+                return $this::send_success_response('Data loaded' ,"Success",[$data]);
             }else{
                
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
         
     }
