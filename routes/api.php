@@ -34,18 +34,20 @@ Route::post('insertorder','ProductTypeController@insertorder');
 Route::post('get-tasklist','ProductTypeController@getorderdetails');
 
 
-//Route::post('update-order','ProductTypeController@updateorderstatus');
+//Route::post('update-order','ProductTypeController@updateorderstatus');elite.rupeeboss.com/api/update-order
+
 Route::post('add-by-pincode','ProductTypeController@loadpincode');
 Route::post('load-states','ProductTypeController@loadstates');
 Route::post('load-cities','ProductTypeController@loadcities');
 Route::post('getincome','TransactionController@getincome');
 Route::post('agent-order-detail','TransactionController@getagentorderdetails');
 Route::post('update-order-status','TransactionController@updateorderstatus');
+Route::post('getpending-wallet','TransactionController@getpendingwallet');
+Route::post('agent-amt-request','TransactionController@agentamtrequest');
 
 
 Route::post('forgot-password','otpController@forgot_password');
 Route::post('change-password','otpController@change_password');
-Route::get('rto-location','otpController@rto');
 
 
 

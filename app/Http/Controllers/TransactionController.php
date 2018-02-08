@@ -37,7 +37,7 @@ class TransactionController extends InitialController
         {
             echo 'error:' . curl_error($curl);
         }
-        //print_r($json);exit();
+       
         if (isset($json->error)) {
             return "Error: " . $json->error;
             throw new Exception("Error: " . $json->error);
@@ -58,15 +58,15 @@ class TransactionController extends InitialController
             $data=DB::select('call view_sales_orders(?)',[$user_id]);
 
             if(sizeof($data)>0){
-                return $this::send_success_response('Data loaded' ,"Success",$data);
+                return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+                
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
-       // return Response::json($data);
+      
     }
 
 
@@ -79,14 +79,15 @@ class TransactionController extends InitialController
                     $remark=$req['remark'];
                     $txnid=$req['transaction_id'];
                     $pg_status=$req['status'];
-               
+                    $rto=$req["rto_id"];
                     
-                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump]);
-                    return $this::send_success_response('Data Updated' ,"Success",$data);
+                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump,$rto]);
+                    return $this::send_success_response('Data Updated Successfully' ,"Success",$data);
+
 
                 } catch (Exception $e) {
-                    return $this::send_failure_response($e->getMessage(),"failure",[]);
-                    //return $e->getMessage();//$this::send_failure_response($e->getMessage(),"failure",""); 
+                    return $this::send_failure_response($e->getMessage(),"failure","");
+                   
                 }
     }
 
@@ -94,16 +95,22 @@ class TransactionController extends InitialController
     {
          try {
             $user_id=$req['agent_id'];
-            $data=DB::select('call usp_getagentincome(?)',[$user_id]);
-
+            $sata=DB::select('call usp_getagentincome(?)',[$user_id]);
+            
+            foreach ($sata as $key => $value) {
+                $data[$value->Status]=$value->count;
+            }
+           
+           
             if(sizeof($data)>0){
-                return $this::send_success_response('Data loaded' ,"Success",$data);
+
+                return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+               
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
         
     }
@@ -116,13 +123,13 @@ class TransactionController extends InitialController
             $data=DB::select('call usp_getagentorders(?,?)',array($user_id,$status_id));
 
             if(sizeof($data)>0){
-                return $this::send_success_response('Data loaded' ,"Success",$data);
+                return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                //print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+                
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
         
     }
@@ -138,14 +145,53 @@ class TransactionController extends InitialController
             $data=DB::select('call usp_update_order_status(?,?,?,?)',array($order_id,$agent_id,$status_id,$order_remark));
 
             if(sizeof($data)>0){
-                return $this::send_success_response('Data loaded' ,"Success",$data);
+                return $this::send_success_response('Order status updated successfully' ,"Success","");
             }else{
-                //print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+               // print_r($data);
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }        
     }
+
+    public function getpendingwallet(Request $req)
+    {
+        try {
+            $agent_id = $req['agent_id'];
+
+            $data=DB::select('call usp_getwallet_pending_details(?)',array($agent_id));
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded successfully' ,"Success",$data);
+            }else{
+              //  print_r($data);
+                return $this::send_failure_response("No order to show","failure",""); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
+        }                
+    }
+
+    public function agentamtrequest(Request $req)
+    {
+        try {
+            $agent_id = $req['agent_id'];
+            $req_amt = $req['req_amt'];
+
+            $data=DB::select('call usp_agent_req_amt(?,?)',array($agent_id,$req_amt));
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Data loaded' ,"Success",$data);
+            }else{
+                
+                return $this::send_failure_response("No order to show","failure",""); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
+        }        
+    }
+
+
 
 }
