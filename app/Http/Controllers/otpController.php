@@ -78,8 +78,9 @@ class otpController extends CallApiController
   public function forgot_password(Request $req){
         
         // print_r($req->all());exit();
-        $status=0;
-        $msg="success";
+        $status_code=0;
+        $status="success";
+       
         try {
             $mobile = $req['mobile'];
             $type = $req['type'];
@@ -102,29 +103,29 @@ class otpController extends CallApiController
              $query=DB::table('user_master')->where('mobile', $req['mobile'])
             ->update(['password' => $password]);
             
-              return response()->json(array('status' =>0,'message'=>"success"));
+              return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been sent to your registered number"));
             
             } elseif ($type==2 && $que->ag_contact_no) {
               $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
             ->update(['agent_password' => $password]);
             
-              return response()->json(array('status' =>0,'message'=>"success"));
+              return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been sent to your registered number"));
             
             }else{
 
-               return response()->json(array('status' =>1,'message'=>"Number doesnt match."));
+               return response()->json(array('status_code' =>1,'status'=>"failure",'message'=>"Number doesnt match."));
             } 
             
             
         } catch (Exception $e) {
-            return response()->json(array('status' =>1,'message'=>$e->getMessage()));
+            return response()->json(array('status' =>1,'status'=>"failure",'message'=>$e->getMessage()));
         }
         
     }
 
     public function change_password(Request $req){
-      $status=0;
-      $msg="success";
+       $status_code=0;
+       $status="success";
       try {
      $mobile = $req['mobile'];
      $type = $req['type'];
@@ -139,14 +140,14 @@ class otpController extends CallApiController
        $query=DB::table('user_master') ->where('mobile', $req['mobile'])
             ->update(['password' => $confirm_password]);
             if ($query) {
-              return response()->json(array('status' =>0,'message'=>"success"));
+              return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been updated"));
             }
 
       }elseif ($type==2) {
         $query=DB::table('agent_master') ->where('ag_contact_no', $req['mobile'])
             ->update(['agent_password' => $confirm_password]);
             if ($query) {
-              return response()->json(array('status' =>0,'message'=>"success"));
+              return response()->json(array('status_code' =>0,'status'=>"success",'message'=>"Password has been updated"));
             }
       }
         
@@ -154,9 +155,22 @@ class otpController extends CallApiController
        return response()->json(array('message'=>"Both password should be same"));
      }
       } catch (Exception $e) {
-        return response()->json(array('status' =>1,'message'=>$e->getMessage()));
+        return response()->json(array('status_code' =>1,'status'=>"failure",'message'=>$e->getMessage()));
       }
   }
+
+  public function rto(Request $req){
+      try {
+        $rto = DB::table('rto_master')->select('id','rto_location', 'series_no')->get();
+     // print_r($rto);exit();
+     return $this::send_success_response('RTO updated',"success",$rto);
+      } catch (Exception $e) {
+        return $this::send_failure_response($e->getMessage(),"failure",null);
+      }
+     
+
+    }
+
 
 }
 

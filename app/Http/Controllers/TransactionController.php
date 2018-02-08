@@ -37,7 +37,7 @@ class TransactionController extends InitialController
         {
             echo 'error:' . curl_error($curl);
         }
-        //print_r($json);exit();
+       
         if (isset($json->error)) {
             return "Error: " . $json->error;
             throw new Exception("Error: " . $json->error);
@@ -60,13 +60,13 @@ class TransactionController extends InitialController
             if(sizeof($data)>0){
                 return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                print_r($data);
+                
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
         } catch (Exception $e) {
             return $this::send_failure_response($e->getMessage(),"failure",[]); 
         }
-       // return Response::json($data);
+      
     }
 
 
@@ -86,7 +86,7 @@ class TransactionController extends InitialController
 
                 } catch (Exception $e) {
                     return $this::send_failure_response($e->getMessage(),"failure",[]);
-                    //return $e->getMessage();//$this::send_failure_response($e->getMessage(),"failure",""); 
+                   
                 }
     }
 
@@ -94,16 +94,22 @@ class TransactionController extends InitialController
     {
          try {
             $user_id=$req['agent_id'];
-            $data=DB::select('call usp_getagentincome(?)',[$user_id]);
-
+            $sata=DB::select('call usp_getagentincome(?)',[$user_id]);
+            
+            foreach ($sata as $key => $value) {
+                $data[$value->Status]=$value->count;
+            }
+           
+           
             if(sizeof($data)>0){
+
                 return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                print_r($data);
-                return $this::send_failure_response("No order to show","failure",array()); 
+               
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
         
     }
@@ -118,7 +124,7 @@ class TransactionController extends InitialController
             if(sizeof($data)>0){
                 return $this::send_success_response('Data loaded successfully' ,"Success",$data);
             }else{
-                print_r($data);
+                
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
         } catch (Exception $e) {
@@ -177,7 +183,7 @@ class TransactionController extends InitialController
             if(sizeof($data)>0){
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
-                print_r($data);
+                
                 return $this::send_failure_response("No order to show","failure",array()); 
             }
         } catch (Exception $e) {

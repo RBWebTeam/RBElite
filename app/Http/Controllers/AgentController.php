@@ -11,7 +11,10 @@ use Session;
 use URL;
 use Mail;
 use App\library\Pagination ;
+
+
 class AgentController extends Controller
+
 {
        
 
@@ -168,6 +171,47 @@ public function rto_save(Request $req){
 }
 
 
+
+
+                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
+
+                    }
+
+                }
+
+            }
+
+             
+
+            if ($page < $counter - 1){
+
+                $setPaginate.= "<li><a href='{$page_url}page=$next'>Next</a></li>";
+
+              $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>Last</a></li>";
+
+            }else{
+
+                $setPaginate.= "<li><a class='current_page'>Next</a></li>";
+
+                $setPaginate.= "<li><a class='current_page'>Last</a></li>";
+
+            }
+
+ 
+
+            $setPaginate.= "</ul>\n";    
+
+        }
+
+     
+
+     
+
+        return $setPaginate;
+
+    }
+
+    
 
  
 }
