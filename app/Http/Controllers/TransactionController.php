@@ -61,10 +61,10 @@ class TransactionController extends InitialController
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
                 
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
       
     }
@@ -79,13 +79,13 @@ class TransactionController extends InitialController
                     $remark=$req['remark'];
                     $txnid=$req['transaction_id'];
                     $pg_status=$req['status'];
-               
+                    $rto=$req["rto_id"]
                     
-                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump]);
+                    $data=DB::select("CALL update_transaction_details(?,?,?,?,?,?)",[$order_id,$pg_date,$remark,$txnid,$pg_status,$dump,$rto]);
                     return $this::send_success_response('Data Updated' ,"Success",$data);
 
                 } catch (Exception $e) {
-                    return $this::send_failure_response($e->getMessage(),"failure",[]);
+                    return $this::send_failure_response($e->getMessage(),"failure","");
                    
                 }
     }
@@ -124,10 +124,10 @@ class TransactionController extends InitialController
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
                 
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }
         
     }
@@ -146,10 +146,10 @@ class TransactionController extends InitialController
                 return $this::send_success_response('Data loaded' ,"Success",$data);
             }else{
                 
-                return $this::send_failure_response("No order to show","failure",array()); 
+                return $this::send_failure_response("No order to show","failure",""); 
             }
         } catch (Exception $e) {
-            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+            return $this::send_failure_response($e->getMessage(),"failure",""); 
         }        
     }
 
