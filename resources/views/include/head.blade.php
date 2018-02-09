@@ -12,5 +12,6 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <link href="{{url('stylesheets/datepicker.css')}}" rel="stylesheet" type="text/css" />
         <link type="text/css" rel="stylesheet" href="{{url('stylesheets/bootstrap/dataTables.bootstrap.min.css')}}">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+  
    </head>

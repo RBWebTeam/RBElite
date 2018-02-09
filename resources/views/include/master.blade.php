@@ -19,5 +19,6 @@
  @include('include.footer')
  @include('include.script')
  @include('include.ajscript')
+ @include('include.js')
 </html>
  

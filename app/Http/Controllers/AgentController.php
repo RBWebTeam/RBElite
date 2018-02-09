@@ -76,8 +76,8 @@ class AgentController extends Controller
 
 
 $count=DB::table("elite_card_master")->select('inc')->get();
-if(isset($_GET["page"])){
-      $page = (int)$_GET["page"];
+if(isset($_GET["search"])){
+      $page = (int)$_GET["search"];
     }else{
     $page = 1;
 }
@@ -89,6 +89,13 @@ if(isset($_GET["page"])){
                           $card=DB::select('call sp_elite_card_master(?,?)',array($pageLimit,$setLimit));
                          $company_master=DB::table("company_master")->select('id','name')->get();
  
+ 
+ 
+
+// $str = 'Some String';
+// $encoded = urlencode( base64_encode( $str ) );
+// $decoded = base64_decode( urldecode( $encoded ) );
+//  exit;
  
  
                         return view('dashboard.elite_card',['card'=>$card,'company_master'=>$company_master,'count'=>$count,'pagina'=>$pagina]);
@@ -172,44 +179,7 @@ public function rto_save(Request $req){
 
 
 
-
-                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
-
-                    }
-
-                }
-
-            }
-
-             
-
-            if ($page < $counter - 1){
-
-                $setPaginate.= "<li><a href='{$page_url}page=$next'>Next</a></li>";
-
-              $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>Last</a></li>";
-
-            }else{
-
-                $setPaginate.= "<li><a class='current_page'>Next</a></li>";
-
-                $setPaginate.= "<li><a class='current_page'>Last</a></li>";
-
-            }
-
  
-
-            $setPaginate.= "</ul>\n";    
-
-        }
-
-     
-
-     
-
-        return $setPaginate;
-
-    }
 
     
 

@@ -48,7 +48,8 @@
 						                  <td>{{$val->agent_commision}}</td>
 						                   <td>{{$val->required_field}}</td>
 						                    <td>{{$val->company_name}}</td>
-						                   <td>{{$val->product_logo}}</td>		
+						              
+						                     <td class="logo"><img src="{{url('images/upload')}}/{{$val->product_logo}}" height="100" width="100"> </td>	
 						                 
 						                  </tr>
 						                @endforeach

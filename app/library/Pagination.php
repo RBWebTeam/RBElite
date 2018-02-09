@@ -10,6 +10,8 @@ class Pagination {
 
 
 public function displayPaginationBelow($per_page,$page,$count){
+
+ 
  
        $page_url="?";
   
@@ -60,7 +62,7 @@ public function displayPaginationBelow($per_page,$page,$count){
  
                     else
  
-                        $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
+                        $setPaginate.= "<li><a href='{$page_url}search=$counter'>$counter</a></li>";                 
  
                 }
  
@@ -84,15 +86,15 @@ public function displayPaginationBelow($per_page,$page,$count){
  
                         else
  
-                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
+                            $setPaginate.= "<li><a href='{$page_url}search=$counter'>$counter</a></li>";                 
  
                     }
  
                     $setPaginate.= "<li class='dot'>...</li>";
  
-                    $setPaginate.= "<li><a href='{$page_url}page=$lpm1'>$lpm1</a></li>";
+                    $setPaginate.= "<li><a href='{$page_url}search=$lpm1'>$lpm1</a></li>";
  
-                    $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";     
+                    $setPaginate.= "<li><a href='{$page_url}search=$setLastpage'>$setLastpage</a></li>";     
  
                 }
  
@@ -100,9 +102,9 @@ public function displayPaginationBelow($per_page,$page,$count){
  
                 {
  
-                    $setPaginate.= "<li><a href='{$page_url}page=1'>1</a></li>";
+                    $setPaginate.= "<li><a href='{$page_url}search=1'>1</a></li>";
  
-                    $setPaginate.= "<li><a href='{$page_url}page=2'>2</a></li>";
+                    $setPaginate.= "<li><a href='{$page_url}search=2'>2</a></li>";
  
                     $setPaginate.= "<li class='dot'>...</li>";
  
@@ -116,15 +118,15 @@ public function displayPaginationBelow($per_page,$page,$count){
  
                         else
  
-                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
+                            $setPaginate.= "<li><a href='{$page_url}search=$counter'>$counter</a></li>";                 
  
                     }
  
                     $setPaginate.= "<li class='dot'>..</li>";
  
-                    $setPaginate.= "<li><a href='{$page_url}page=$lpm1'>$lpm1</a></li>";
+                    $setPaginate.= "<li><a href='{$page_url}search=$lpm1'>$lpm1</a></li>";
  
-                    $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>$setLastpage</a></li>";     
+                    $setPaginate.= "<li><a href='{$page_url}search=$setLastpage'>$setLastpage</a></li>";     
  
                 }
  
@@ -132,9 +134,9 @@ public function displayPaginationBelow($per_page,$page,$count){
  
                 {
  
-                    $setPaginate.= "<li><a href='{$page_url}page=1'>1</a></li>";
+                    $setPaginate.= "<li><a href='{$page_url}search=1'>1</a></li>";
  
-                    $setPaginate.= "<li><a href='{$page_url}page=2'>2</a></li>";
+                    $setPaginate.= "<li><a href='{$page_url}search=2'>2</a></li>";
  
                     $setPaginate.= "<li class='dot'>..</li>";
  
@@ -148,7 +150,7 @@ public function displayPaginationBelow($per_page,$page,$count){
 
                         else
 
-                            $setPaginate.= "<li><a href='{$page_url}page=$counter'>$counter</a></li>";                 
+                            $setPaginate.= "<li><a href='{$page_url}search=$counter'>$counter</a></li>";                 
 
                     }
 
@@ -160,9 +162,9 @@ public function displayPaginationBelow($per_page,$page,$count){
 
             if ($page < $counter - 1){
 
-                $setPaginate.= "<li><a href='{$page_url}page=$next'>Next</a></li>";
+                $setPaginate.= "<li><a href='{$page_url}search=$next'>Next</a></li>";
 
-              $setPaginate.= "<li><a href='{$page_url}page=$setLastpage'>Last</a></li>";
+              $setPaginate.= "<li><a href='{$page_url}search=$setLastpage'>Last</a></li>";
 
             }else{
 
