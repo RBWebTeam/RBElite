@@ -197,6 +197,27 @@ class TransactionController extends InitialController
         }        
     }
 
+    public function agentaccept_status_update(Request $req)
+    {
+
+        try{
+            $order_id=$req['order_id'];
+            $status_id = $req['agent_accept_status'];            
+            $agent_id = $req['agent_id'];
+
+            $data=DB::select('call usp_update_agent_status(?,?,?)',array($order_id,$agent_id,$status_id));
+
+            if(sizeof($data)>0){
+                return $this::send_success_response('Order status updated successfully' ,"Success",$data);
+            }else{
+               // print_r($data);
+                return $this::send_failure_response("No order to show","failure",[]); 
+            }
+        } catch (Exception $e) {
+            return $this::send_failure_response($e->getMessage(),"failure",[]); 
+        }
+    }
+
 
 
 }
