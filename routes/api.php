@@ -56,3 +56,6 @@ Route::post('get-orders','TransactionController@show_orders');
 
 Route::post('update-order','TransactionController@update_orders');
 
+Route::post('doc-upload','UploadDocumentController@upload');
+Route::get('rto-location','otpController@rto');
+
