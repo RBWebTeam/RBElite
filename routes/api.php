@@ -49,7 +49,7 @@ Route::post('agent-amt-request','TransactionController@agentamtrequest');
 Route::post('forgot-password','otpController@forgot_password');
 Route::post('change-password','otpController@change_password');
 
-
+Route::post('agentaccept-status-update','TransactionController@agentaccept_status_update');
 
 Route::post('get-orders','TransactionController@show_orders');
 
