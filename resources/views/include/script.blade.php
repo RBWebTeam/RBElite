@@ -404,4 +404,18 @@ $("#company_master_id").click(function(event){  event.preventDefault();
         });
   });
 </script>
+<script type="text/javascript">
+  function getreportdata(id)  
+  {
+    alert(id);
+   $.ajax({  
+         type: "GET",  
+         url:'Payment-Report-get/'+id,
+         success: function(data){        
+              $("#divrepo").show();  
+        }  
+      });
+
+  } 
+</script>
  

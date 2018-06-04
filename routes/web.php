@@ -63,6 +63,12 @@ Route::POST('elite-save','AgentController@elite_save');
 
 Route::get('rto-list','AgentController@rto_list');
 Route::POST('rto-save','AgentController@rto_save');
+Route::get('Payment-Report','Payment_reportController@getview');
+Route::get('Payment-Report-get/{id}','Payment_reportController@reportshow');
+Route::get('paymentdone','Payment_reportController@getpaymentdone');
+Route::get('PaymentPending','Payment_reportController@getpaymentpending');
+Route::get('UnassignedLead','Payment_reportController@getUnassignedLead');
+Route::get('assignedLead','Payment_reportController@getassignedLead');
 
 });
 Route::get('access_token.php','TransactionController@give_token');

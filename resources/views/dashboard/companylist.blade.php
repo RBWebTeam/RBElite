@@ -2,7 +2,7 @@
 @section('content')
     
 
-					          <!-- Body Content Start ---->
+					          <!-- Body Content Start -->
 					            <div id="content" style="overflow:scroll;">
 								 <div class="container-fluid white-bg">
 								 <div class="col-md-12"><h3 class="mrg-btm">Company-master</h3></div>
