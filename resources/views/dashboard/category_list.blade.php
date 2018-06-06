@@ -21,7 +21,7 @@
 								 <div class="col-md-12">
 								 <div class="overflow-scroll">
 								 <div class="table-responsive" >
-									<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="example">
+									<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="example1">
 					                 <thead>
 					                  <tr>
 					                  
@@ -123,10 +123,6 @@
     </div>
   </div>
 </div>
-
-
-
-
 @endsection		
 
  

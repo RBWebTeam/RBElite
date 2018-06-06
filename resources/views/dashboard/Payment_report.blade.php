@@ -5,13 +5,14 @@
 		<div class="col-md-12"><h3 class="mrg-btm">Report</h3></div>
       <div>
       	<div>
-      		<a class="btn btn-primary" onclick="getreportdata(1)">Payment Done</a>
-      		<a class="btn btn-primary" onclick="getreportdata(2)">Payment Pending</a>
-      		<a class="btn btn-primary" onclick="getreportdata(3)">Unassigned Lead </a>
-      		<a class="btn btn-primary" onclick="getreportdata(4)">Assigned Lead</a>	
+      		<a class="btn btn-primary" target="_blank" href="paymentdone">Payment Done</a>
+      		<a class="btn btn-primary" target="_blank" href="PaymentPending">Payment Pending</a>
+      		<a class="btn btn-primary" target="_blank" href="UnassignedLead">Unassigned Lead </a>
+      		<a class="btn btn-primary" target="_blank" href="assignedLead">Assigned Lead</a>	
       	</div>
       </div>
-		<div class="col-md-12">
+      <br>
+		<!-- <div class="col-md-12">
 		    <div class="overflow-scroll" >
 			<div class="table-responsive" >
 				<div id="divrepo" style="display: none;">
@@ -64,7 +65,7 @@
 				</div>
 			</div>
 			</div>						
-		</div>
+		</div> -->
 	 </div>
 </div>
 @endsection		 

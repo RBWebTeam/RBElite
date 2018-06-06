@@ -2,7 +2,7 @@
 @section('content')
  <div id="content" style="overflow:scroll;">
 	 <div class="container-fluid white-bg">
-		<div class="col-md-12"><h3 class="mrg-btm">Payment Pending Report</h3></div>      
+		<div class="col-md-12"><h3 class="mrg-btm">Unassigned Lead Report</h3></div>      
 		<div class="col-md-12">
 		    <div class="overflow-scroll" >
 			<div class="table-responsive" >

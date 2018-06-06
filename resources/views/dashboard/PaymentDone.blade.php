@@ -1,5 +1,5 @@
 @extends('include.master')
-@section('content')
+@section('content') 
  <div id="content" style="overflow:scroll;">
 	 <div class="container-fluid white-bg">
 		<div class="col-md-12"><h3 class="mrg-btm">Payment Done Report</h3></div>      
@@ -7,7 +7,7 @@
 		    <div class="overflow-scroll" >
 			<div class="table-responsive" >
 				<div id="divrepo">
-				<table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="example">
+				 <table class="datatable-responsive table table-striped table-bordered dt-responsive nowrap" id="payment">
 					<thead>
 					    <tr>					                  
 					      <th>ID</th>

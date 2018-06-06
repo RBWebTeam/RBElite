@@ -1,21 +1,15 @@
 <script type="text/javascript">
- 
-
     function Numeric(event) {     // for numeric value function
       if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 8) {
           event.keyCode = 0;
           return false;
       }
     }
- 
-
-
 $(document).ready(function(){
     $(".fltr-tog").click(function(){
         $(".filter-bdy").toggle();
     });
-});
- 
+}); 
 function myFunction(x) {
    x.classList.toggle("change");
 }
@@ -417,5 +411,11 @@ $("#company_master_id").click(function(event){  event.preventDefault();
       });
 
   } 
+
+var table = $("#payment").DataTable();
+$(".input-sm").on( 'keyup', function(){
+// alert(table);
+    table.search( this.value ).draw();
+});
 </script>
  
